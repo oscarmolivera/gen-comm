@@ -1,0 +1,21 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  host: localhost
+  database: gen_comm_development
+  username: <%= ENV['DATABASE_USERNAME'] %> 
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: <%= ENV['SOCKET'] %>
+
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  host: localhost
+  database: gen_comm_test
+  username: <%= ENV['DATABASE_USERNAME'] %> 
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: <%= ENV['SOCKET'] %>
+
