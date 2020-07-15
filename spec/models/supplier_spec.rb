@@ -8,4 +8,9 @@ RSpec.describe Supplier, type: :model do
     it { is_expected.to have_db_column(:telephone) }
     it { is_expected.to have_db_column(:photo) }
   end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:products) }
+  end
 end
+ 
