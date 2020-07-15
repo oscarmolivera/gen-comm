@@ -11,5 +11,6 @@ RSpec.describe Sale, type: :model do
   describe 'associations' do
     it { is_expected.to have_many(:sale_details) }
     it { is_expected.to belong_to(:client) }
+    it { is_expected.to belong_to(:user) }
   end
 end
