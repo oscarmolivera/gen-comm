@@ -7,4 +7,8 @@ RSpec.describe Client, type: :model do
     it { is_expected.to have_db_column(:address) }
     it { is_expected.to have_db_column(:telephone) }
   end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:sales) }
+  end
 end
