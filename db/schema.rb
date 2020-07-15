@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_15_013735) do
+ActiveRecord::Schema.define(version: 2020_07_15_014537) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 2020_07_15_013735) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["supplier_id"], name: "index_products_on_supplier_id"
+  end
+
+  create_table "sale_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.decimal "quantity", precision: 10
+    t.bigint "sale_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_sale_details_on_product_id"
+    t.index ["sale_id"], name: "index_sale_details_on_sale_id"
   end
 
   create_table "sales", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -76,6 +86,8 @@ ActiveRecord::Schema.define(version: 2020_07_15_013735) do
 
   add_foreign_key "products", "categories"
   add_foreign_key "products", "suppliers"
+  add_foreign_key "sale_details", "products"
+  add_foreign_key "sale_details", "sales"
   add_foreign_key "sales", "clients"
   add_foreign_key "sales", "users"
 end
