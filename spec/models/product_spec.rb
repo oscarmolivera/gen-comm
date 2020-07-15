@@ -13,5 +13,6 @@ RSpec.describe Product, type: :model do
     it { is_expected.to belong_to(:supplier) }
     it { is_expected.to belong_to(:category) }
     it { is_expected.to have_many(:sale_details) }
+    it { is_expected.to have_many(:warehouse_records) }
   end
 end

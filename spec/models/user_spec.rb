@@ -8,5 +8,6 @@ RSpec.describe User, type: :model do
 
   describe 'associations' do
     it { is_expected.to have_many(:sales) }
+    it { is_expected.to have_many(:warehouse_records) }
   end
 end

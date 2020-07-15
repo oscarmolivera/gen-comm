@@ -11,6 +11,7 @@ RSpec.describe Supplier, type: :model do
 
   describe 'associations' do
     it { is_expected.to have_many(:products) }
+    it { is_expected.to have_many(:warehouse_records) }
   end
 end
  

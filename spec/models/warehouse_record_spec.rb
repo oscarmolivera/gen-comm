@@ -9,6 +9,8 @@ RSpec.describe WarehouseRecord, type: :model do
   end
 
   describe 'associations' do
-   
+    it { is_expected.to belong_to(:supplier) }
+    it { is_expected.to belong_to(:product) }
+    it { is_expected.to belong_to(:user) }    
   end
 end
