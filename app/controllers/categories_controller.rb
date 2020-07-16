@@ -13,9 +13,14 @@ class CategoriesController < ApplicationController
       if @category.save
         format.js
       else
-        format.js { render :new, status: :Not_Acceptable }
+        format.js { render :new, status: :method_not_allowed }
       end
     end
   end
 
+  private
+
+  def category_params
+    params.require(:category).permit(:name, :description)
+  end
 end
