@@ -79,5 +79,27 @@ RSpec.describe CategoriesController, type: :controller do
       end
     end
   end
- 
+
+  describe 'GET show' do
+    # no needed in this case
+  end
+
+  describe 'GET edit' do
+    subject { get :edit, params: params, xhr: true }
+    context 'when params are valid' do
+      let(:params) { { id: category.id } }
+
+      let!(:category) { create(:category) }
+
+      before { subject }
+
+      it 'assigns @category' do
+        expect(assigns(:category)).to eq(category)
+      end
+
+      it 'renders the edit template' do
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
 end 
