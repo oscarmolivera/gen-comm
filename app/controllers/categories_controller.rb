@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[edit update]
+  before_action :set_category, only: %i[edit update destroy]
   def index
     @categories = Category.all
   end
@@ -29,6 +29,11 @@ class CategoriesController < ApplicationController
         format.js { render :new, status: :method_not_allowed }
       end
     end
+  end
+
+  def destroy
+    @category.destroy
+    respond_to { |format| format.js }
   end
 
   private
