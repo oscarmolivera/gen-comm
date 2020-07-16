@@ -1,1 +1,16 @@
-%h1='Category Index'
+.card.shadow.md-4
+  .card-body
+    .table-responsive
+      %table#tablaCategorias.table.table-border{:width => "100%"}
+        %thead
+          %tr
+            %th='Nombre Categoria'
+            %th='Description'
+        %tbody
+          - @categories.each do |cat|
+            %tr{:id => "category_#{cat.id}"}
+              %td= cat.name
+              %td= cat.description
+              %td
+                = link_to 'Editar', edit_category_path(cat), class: 'btn btn-xs btn-info', remote: true
+                = link_to 'Borrar', cat, class: 'btn btn-xs btn-danger', remote: true, method: :delete, data: { confirm: "¿Desea Borrar la Categoría: #{cat.name}?"}
