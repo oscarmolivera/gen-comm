@@ -102,4 +102,38 @@ RSpec.describe CategoriesController, type: :controller do
       end
     end
   end
+
+  describe 'PUT update' do
+    subject { put :update, params: params, xhr: true }
+
+    let!(:category) { create(:category) }
+
+    context 'valid params' do
+      let(:params) do
+        { id: category.id, category: { name: 'kot', description: 'New Description' } }
+      end
+
+      it 'updates category' do
+        expect { subject }
+          .to change { category.reload.name }
+          .from(category.name)
+          .to('kot')
+          .and change { category.reload.description }
+          .from(category.description)
+          .to('New Description')
+      end
+    end
+
+    context 'invalid params' do
+      let(:params) do
+        { id: category.id, category: { name: nil, description: nil  } }
+      end
+
+      it 'does not update category' do
+        subject
+        expect(response).to have_http_status(405)
+      end
+    end
+    
+  end
 end 
