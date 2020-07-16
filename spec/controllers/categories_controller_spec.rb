@@ -117,10 +117,14 @@ RSpec.describe CategoriesController, type: :controller do
         expect { subject }
           .to change { category.reload.name }
           .from(category.name)
-          .to('kot')
+          .to(params[:category][:name])
           .and change { category.reload.description }
           .from(category.description)
-          .to('New Description')
+          .to(params[:category][:description])
+      end
+      
+      it 'have status ok ' do 
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -135,5 +139,21 @@ RSpec.describe CategoriesController, type: :controller do
       end
     end
     
+  end
+
+  describe 'DELETE destroy' do
+    subject { delete :destroy, params: params, xhr: true }
+
+    let!(:category) { create(:category) }
+
+    context 'valid params' do
+      let(:params) do
+        { id: category.id }
+      end
+
+      it 'deletes category' do
+        expect { subject }.to change(Category, :count).by(-1)
+      end 
+    end
   end
 end 
