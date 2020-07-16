@@ -44,4 +44,40 @@ RSpec.describe CategoriesController, type: :controller do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'POST create' do
+    subject { post :create, params: params, xhr: true }
+    let(:category) { build(:category) }
+  
+    context 'valid params' do
+      let(:params) do
+        { category: { name: category.name, description: category.description } }
+      end
+
+      it 'creates new category' do
+        expect { subject }.to change(Category, :count).by(1)
+      end
+
+      it 'method create is success' do
+        subject
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context 'invalid params' do
+      let(:params) do
+        { category: { name: nil, description: nil } }
+      end
+
+      it 'does not create new category' do
+        expect { subject }.not_to change(Category, :count)
+      end
+
+      it do
+        subject
+        expect(response).to have_http_status(405)
+      end
+    end
+  end
+ 
 end 
