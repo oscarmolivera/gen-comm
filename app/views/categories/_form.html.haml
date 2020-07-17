@@ -1,0 +1,21 @@
+= form_for @category, remote true do |f|
+  .form-group
+    %h4.control-label
+      ='Datos Categoría'
+  %div{:class => "item form-group#{category.errors[:name].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :name, 'Nombre Categoría'
+    .input-group
+      = f.text_field :name, class: 'form-control', placeholder: 'Ingrese nombre'
+      - if @category.errors[:name].any?
+        %p.bg-danger
+          = @category.errors[:name].to_s[/\w([^"]*)/]
+  %div{:class => "item form-group#{category.errors[:description].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :description, 'Nombre Categoría'
+    .input-group
+      = f.text_field :description, class: 'form-control', placeholder: 'Ingrese description'
+      - if @category.errors[:description].any?
+        %p.bg-danger
+          = @category.errors[:description].to_s[/\w([^"]*)/]
+  .actions.col-md-9.col-sm-9.col-xs12.col-md-offset-3
+    = f.submit @category.new_record? ? 'Crear Categoría' : 'Actualizar Categoría', class: 'btn btn-success'
+ 
