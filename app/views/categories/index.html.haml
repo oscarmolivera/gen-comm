@@ -1,4 +1,16 @@
+%h1.h3.mb-2.text-gray-800
+  ='Categorias'
+%p.mb-4
+  ='Crear, editar o desactivar categorias de la aplicacion.'
+
 .card.shadow.md-4
+  .card-header.py-3
+    %h6.m-0.font-weight-bold.text-primary
+      ='Listado de Categorias Activas'
+  .px-4.pt-2
+    =link_to  new_category_path, id: 'add-new-category', class:'btn btn-success', remote: true do
+      %span.fas.fa-plus-square    
+      = 'New Categoria'
   .card-body
     .table-responsive
       %table#tablaCategorias.table.table-border{:width => "100%"}
@@ -13,4 +25,6 @@
               %td= cat.description
               %td
                 = link_to 'Editar', edit_category_path(cat), class: 'btn btn-xs btn-info', remote: true
-                = link_to 'Borrar', cat, class: 'btn btn-xs btn-danger', remote: true, method: :delete, data: { confirm: "¿Desea Borrar la Categoría: #{cat.name}?"}
+                = link_to 'Desactivar', cat, class: 'btn btn-xs btn-danger', remote: true, method: :delete, data: { confirm: "¿Desea Borrar la Categoría: #{cat.name}?"}
+
+= render 'modal_categories'
