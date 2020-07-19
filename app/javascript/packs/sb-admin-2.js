@@ -1,8 +1,3 @@
-require("packs/demo/chart-area-demo")
-require("packs/demo/chart-bar-demo")
-require("packs/demo/chart-pie-demo")
-require("packs/demo/datatables-demo")
-
 (function($) {
   "use strict"; // Start of use strict
 
