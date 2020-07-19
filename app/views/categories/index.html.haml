@@ -20,12 +20,12 @@
             %th='Descripción'
             %th='Actiones'
         %tbody
-          - @categories.each do |cat|
-            %tr{:id => "category_#{cat.id}"}
-              %td= cat.name
-              %td= cat.description
+          - @categories.each do |category|
+            %tr{:id => "category_#{category.id}"}
+              %td= category.name
+              %td= category.description
               %td
-                = link_to 'Editar', edit_category_path(cat), class: 'btn btn-xs btn-info', remote: true
-                = link_to 'Desactivar', cat, class: 'btn btn-xs btn-danger', remote: true, method: :delete, data: { confirm: "¿Desea Borrar la Categoría: #{cat.name}?"}
+                = link_to 'Editar', edit_category_path(category), class: 'btn btn-xs btn-info', remote: true
+                = link_to 'Desactivar', category, class: 'btn btn-xs btn-danger', remote: true, method: :delete, data: { confirm: "¿Desea Borrar la Categoría: #{category.name}?"}
 
 = render 'modal_categories'
