@@ -10,14 +10,14 @@
   .px-4.pt-2
     =link_to  new_category_path, id: 'add-new-category', class:'btn btn-success', remote: true do
       %span.fas.fa-plus-square    
-      = 'New Categoria'
+      = 'Nueva Category'
   .card-body
     .table-responsive
       %table#tablaCategorias.table.table-border{:width => "100%"}
         %thead
           %tr
             %th='Nombre Categoria'
-            %th='Description'
+            %th='Descripción'
         %tbody
           - @categories.each do |cat|
             %tr{:id => "category_#{cat.id}"}
