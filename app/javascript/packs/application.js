@@ -2,11 +2,10 @@
     require("turbolinks").start()
     require("@rails/activestorage").start()
     require("channels") 
-
-    require("packs/sb-admin-2")
     
-    import 'bootstrap';
+    import "bootstrap";
     import "chart.js";
-    import "@fortawesome/fontawesome-free/js/all";
-    import './stylesheets/application.scss';
+    import "../src/font-awesome";
+    import "../src/sb-admin-2";
+    import "./stylesheets/application.scss";
     global.$ = jQuery;

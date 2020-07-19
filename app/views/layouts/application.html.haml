@@ -1,16 +1,17 @@
 !!!
-%html{:lang => "en"}
+%html{:lang => 'en'}
   %head
     - csrf_meta_tags
     - csp_meta_tag
     
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{:charset => "utf-8"}/
-    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
-    %meta{:content => "SB Admin2_Dashboard", :name => "description"}/
-    %meta{:content => "Oscar M. Olivera", :name => "author"}/
+    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
+    %meta{:charset => 'utf-8'}/
+    %meta{:content => 'width=device-width, initial-scale=1, shrink-to-fit=no', :name => 'viewport'}/
+    %meta{:content => 'SB Admin2_Dashboard', :name => 'description'}/
+    %meta{:content => 'Oscar M. Olivera', :name => 'author'}/
     %title SB Admin 2 - Dashboard
 
+    = stylesheet_pack_tag 'application'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body#page-top
     #wrapper
@@ -22,8 +23,5 @@
             =yield
         = render 'shared/footer'
 
-    / Scroll to Top Button
-    %a.scroll-to-top.rounded{:href => "#page-top"}
-      %i.fas.fa-angle-up
     = render 'shared/logout_modal'  
 
