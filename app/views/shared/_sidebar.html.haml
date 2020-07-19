@@ -11,7 +11,7 @@
   %hr.sidebar-divider.my-0/
   / Nav Item - Dashboard
   %li.nav-item.active
-    %a.nav-link{:href => "index.html"}
+    %a.nav-link{href: root_path}
       %i.fas.fa-fw.fa-tachometer-alt
       %span Dashboard
   / Divider
@@ -19,6 +19,11 @@
   / Heading
   .sidebar-heading
     Interface
+  / Nav Item - Categories
+  %li.nav-item
+    %a.nav-link.collapsed{href: categories_path}
+      %i.fas.fa-fw.fa-list
+      %span Categorias 
   / Nav Item - Pages Collapse Menu
   %li.nav-item
     %a.nav-link.collapsed{"aria-controls" => "collapseTwo", "aria-expanded" => "true", "data-target" => "#collapseTwo", "data-toggle" => "collapse", :href => "#"}

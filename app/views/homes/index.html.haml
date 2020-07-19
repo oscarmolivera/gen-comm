@@ -184,7 +184,8 @@
         %h6.m-0.font-weight-bold.text-primary Illustrations
       .card-body
         .text-center
-          %img.img-fluid.px-3.px-sm-4.mt-3.mb-4{:alt => "", :src => "img/undraw_posting_photo.svg", :style => "width: 25rem;"}/
+          %img.img-fluid.px-3.px-sm-4.mt-3.mb-4
+            =image_tag("undraw_posting_photo.svg", width: '250')
         %p
           Add some quality, svg illustrations to your project courtesy of
           = succeed "," do
