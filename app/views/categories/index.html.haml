@@ -18,6 +18,7 @@
           %tr
             %th='Nombre Categoria'
             %th='Descripción'
+            %th='Actiones'
         %tbody
           - @categories.each do |cat|
             %tr{:id => "category_#{cat.id}"}
