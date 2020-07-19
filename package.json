@@ -12,6 +12,7 @@
     "data-confirm-modal": "^1.6.2",
     "expose-loader": "^1.0.0",
     "jquery": "^3.5.1",
+    "jquery-easing": "^0.0.1",
     "local-time": "^2.1.0",
     "popper.js": "^1.16.1",
     "puppeteer": "^5.2.0",
