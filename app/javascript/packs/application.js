@@ -11,4 +11,5 @@
     import "./stylesheets/application.scss";
     
     import $ from 'jquery';
+    global.toastr = require("toastr")
     global.$ = jQuery;
