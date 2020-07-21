@@ -7,14 +7,14 @@
     .input-group
       = f.text_field :name, class: 'form-control', placeholder: 'Ingrese nombre'
       - if @category.errors[:name].any?
-        %p.bg-danger
+        %p.categories-errors
           = @category.errors[:name].to_s[/\w([^"]*)/]
   %div{:class => "item form-group#{@category.errors[:description].any? ? 'has-error has-feedback' : ''}"}
     = f.label :description, 'Nombre Categoría'
     .input-group
       = f.text_field :description, class: 'form-control', placeholder: 'Ingrese description'
       - if @category.errors[:description].any?
-        %p.bg-danger
+        %p.categories-errors
           = @category.errors[:description].to_s[/\w([^"]*)/]
   .actions.col-md-9.col-sm-9.col-xs12.col-md-offset-3
     = f.submit @category.new_record? ? 'Crear Categoría' : 'Actualizar Categoría', class: 'btn btn-success'
