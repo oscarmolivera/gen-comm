@@ -15,6 +15,7 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body#page-top
     #wrapper
+      = toastr_flash_messages
       = render 'shared/sidebar'
       #content-wrapper.d-flex.flex-column
         #content
