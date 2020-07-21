@@ -29,3 +29,12 @@
                 = link_to 'Desactivar', category, class: 'btn btn-xs btn-danger', remote: true, method: :delete, data: { confirm: "¿Desea Borrar la Categoría: #{category.name}?"}
 
 = render 'modal_categories'
+
+:javascript
+  $( document ).ready( function(){
+    $('#tablaCategorias').DataTable({
+       "iDisplayLength": 5,
+       "lengthMenu": [[5, 10, 15, 20, 25, 50, -1], [5, 10, 15, 20, 25, 50, "All"]]
+    });
+  });
+

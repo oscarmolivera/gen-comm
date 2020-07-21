@@ -7,7 +7,6 @@
     import "bootstrap";
     import "chart.js";
     import "../src/font-awesome";
-    import "../src/category";
     import "../src/sb-admin-2";
     import "./stylesheets/application.scss";
     
