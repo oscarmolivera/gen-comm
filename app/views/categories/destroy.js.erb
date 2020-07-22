@@ -1,3 +1,6 @@
 // Remove via Ajax the item deleted in a rowtable from the view
 // without asking the server again nor refreshing the page.
 $('#category_<%= @category.id %>').fadeOut();
+
+// Show toaster message
+toastr.warning('Categoría eliminada con exíto!', 'Confirmado', {closeButton:true, progressBar: true});

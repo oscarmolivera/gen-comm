@@ -1,6 +1,8 @@
 // Close the modal
 $('#modalCategories').modal('toggle');
 
+toastr.success('Categoría creada con exíto!', 'Confirmado', {closeButton:true, progressBar: true});
+
 // Add via Ajax the new item created in a rowtable from the view
 // without asking the server again nor refreshing the page.
 $('#tablaCategories').append(

@@ -1,6 +1,9 @@
 // Close the modal
 $('#modalCategories').modal('toggle');
 
+// Show toaster message
+toastr.info('Categoría actualizada con exíto!', 'Confirmado', {closeButton:true, progressBar: true});
+
 // Replace via Ajax the item edited/updated in a rowtable from the view
 // without asking the server again nor refreshing the page.
 $('#category_<%= @category.id %>').replaceWith(
