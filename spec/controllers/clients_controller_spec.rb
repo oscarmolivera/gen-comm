@@ -89,5 +89,24 @@ RSpec.describe ClientsController, type: :controller do
   describe 'GET show' do
     # no needed in this case
   end
+
+  describe 'GET edit' do
+    subject { get :edit, params: params, xhr: true }
+    context 'when params are valid' do
+      let(:params) { { id: client.id } }
+
+      let!(:client) { create(:client) }
+
+      before { subject }
+
+      it 'assigns @client' do
+        expect(assigns(:client)).to eq(client)
+      end
+
+      it 'renders the edit template' do
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
 end 
  
