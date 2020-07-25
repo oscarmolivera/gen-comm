@@ -1,1 +1,42 @@
-= @clients.inspect
+%h1.h3.mb-2.text-gray-800
+  ='Clientes'
+%p.mb-4
+  ='Crear, editar o borrar clientes de la aplicacion.'
+
+.card.shadow.md-4
+  .card-header.py-3
+    %h6.m-0.font-weight-bold.text-primary
+      ='Listado de Clientes'
+  .px-4.pt-2
+    =link_to  new_client_path, id: 'add-new-client', class:'btn btn-success', remote: true do
+      %span.fas.fa-plus-square    
+      = 'Nuevo Cliente'
+  .card-body
+    .table-responsive
+      %table#tableClients.table.table-border{:width => "100%"}
+        %thead
+          %tr
+            %th='Nombre Cliente'
+            %th='Dirección'
+            %th='Email'
+            %th='Teléfono'
+            %th='Actiones'
+        %tbody
+          - @clients.each do |client|
+            %tr{:id => "client_#{client.id}"}
+              %td= client.name
+              %td= client.address
+              %td= client.email
+              %td= client.telephone
+              %td
+                = link_to 'Editar', edit_client_path(client), class: 'btn btn-xs btn-info', remote: true
+                = link_to 'Borrar', client, class: 'btn btn-xs btn-danger', remote: true, method: :delete, data: { confirm: "¿Desea Borrar Este Cliente: #{client.name}?"}
+= render 'modal_clients'
+
+:javascript
+  $( document ).ready( function(){
+    $('#tableClients').DataTable({
+       "iDisplayLength": 5,
+       "lengthMenu": [[5, 10, 15, 20, 25, 50, -1], [5, 10, 15, 20, 25, 50, "All"]]
+    });
+  });
