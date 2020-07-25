@@ -1,0 +1,17 @@
+// Close the modal
+$('#modalCategories').modal('toggle');
+
+toastr.success('Categoría creada con exíto!', 'Confirmado', {closeButton:true, progressBar: true});
+
+// Add via Ajax the new item created in a rowtable from the view
+// without asking the server again nor refreshing the page.
+$('#tablaCategories').append(
+  '<tr id="category_<%= @category.id %>" >' +
+    '<td><%= @category.name %></td>' +
+    '<td><%= @category.description %></td>' +
+    '<td>' +
+      '<%= link_to "Editar", edit_category_path(@category), class: "btn btn-xs btn-info", remote: true %>' +
+      '<%= link_to "Desactivar", @category, class: "btn btn-xs btn-danger", remote: true, method: :delete, data: { confirm: "¿Desea Borrar la Categoría: #{@category.name}?"} %>' +
+    '</td>'+ 
+  '</tr>'
+);
