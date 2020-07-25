@@ -44,5 +44,46 @@ RSpec.describe ClientsController, type: :controller do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'POST create' do
+    subject { post :create, params: params, xhr: true }
+    let(:client) { build(:client) }
+  
+    context 'valid params' do
+      let(:params) do
+        { client: { name: client.name, 
+                    email: client.email,
+                    address: client.address,
+                    telephone: client.telephone } }
+      end
+
+      it 'creates new client' do
+        expect { subject }.to change(Client, :count).by(1)
+      end
+
+      it 'method create is success' do
+        subject
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context 'invalid params' do
+      let(:params) do
+        { client: { name: nil,
+                    email: nil,
+                    address: nil,
+                    telephone: nil } }
+      end
+
+      it 'does not create new client' do
+        expect { subject }.not_to change(Client, :count)
+      end
+
+      it do
+        subject
+        expect(response).to have_http_status(405)
+      end
+    end
+  end
 end 
  
