@@ -27,4 +27,22 @@ RSpec.describe ClientsController, type: :controller do
       end
     end
   end
+
+  describe 'GET new' do
+
+    before { get :new, xhr: true }
+
+    it 'assigns @client' do
+      expect(assigns(:client)).to be_a_new(Client)
+    end
+
+    it 'renders the new template' do
+      expect(response).to render_template(:new)
+    end
+
+    it do
+      expect(response).to have_http_status(200)
+    end
+  end
 end 
+ 
