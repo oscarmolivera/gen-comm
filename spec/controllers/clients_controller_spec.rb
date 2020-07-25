@@ -85,5 +85,9 @@ RSpec.describe ClientsController, type: :controller do
       end
     end
   end
+
+  describe 'GET show' do
+    # no needed in this case
+  end
 end 
  
