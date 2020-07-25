@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[create]
-  before_action :set_client, only: %i[edit update]
+  before_action :set_client, only: %i[edit update destroy]
   def index
     @clients = Client.all
   end
@@ -32,6 +32,11 @@ class ClientsController < ApplicationController
     end
   end
 
+  def destroy
+    @client.destroy
+    respond_to { |format| format.js }
+  end
+
   private
 
   def client_params
@@ -42,4 +47,3 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
   end
 end
-                                
