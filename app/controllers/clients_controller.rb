@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[create]
-  before_action :set_client, only: %i[edit]
+  before_action :set_client, only: %i[edit update]
   def index
     @clients = Client.all
   end
@@ -22,6 +22,16 @@ class ClientsController < ApplicationController
 
   def edit; end
 
+  def update
+    respond_to do |format|
+      if @client.update(client_params)
+        format.js
+      else
+        format.js { render :new, status: :method_not_allowed }
+      end
+    end
+  end
+
   private
 
   def client_params
@@ -32,4 +42,4 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
   end
 end
-                                  
+                                
