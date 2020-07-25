@@ -34,6 +34,8 @@ gem 'puma', '~> 4.1'
 gem 'pundit', '~> 2.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'.
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
+# Locale data and translations to internationalize the app.
+gem 'rails-i18n', '~> 6.0'
 # Simple Form a flexible way to create your forms.
 gem 'simple_form', '~> 5.0', '>= 5.0.2'
 # Use SCSS for stylesheets.
