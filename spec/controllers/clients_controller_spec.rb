@@ -163,5 +163,21 @@ RSpec.describe ClientsController, type: :controller do
     end
     
   end
+
+  describe 'DELETE destroy' do
+    subject { delete :destroy, params: params, xhr: true }
+
+    let!(:client) { create(:client) }
+
+    context 'valid params' do
+      let(:params) do
+        { id: client.id }
+      end
+
+      it 'deletes category' do
+        expect { subject }.to change(Client, :count).by(-1)
+      end 
+    end
+  end
 end 
  
