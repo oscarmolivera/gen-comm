@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: %i[create]
+  skip_before_action :verify_authenticity_token, only: %i[create update destroy]
   before_action :set_client, only: %i[edit update destroy]
   def index
     @clients = Client.all
