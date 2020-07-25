@@ -24,3 +24,13 @@ puts 'Ederson TestUser!'
   )
 end
 puts '12 Dummy Categories created!'
+
+8.times do
+  Client.create!(
+    name:  Faker::Name.name_with_middle,
+    email:  Faker::Internet.email, 
+    address:  Faker::Address.full_address,
+    telephone:  Faker::PhoneNumber.phone_number_with_country_code
+  )
+end
+puts '8 Dummy Clients created!'
