@@ -1,0 +1,14 @@
+// Open the dialog title
+$('#modal-categories-title').html("Editar Categoria");
+
+// Render the edit-form
+$('#modal-body-categories').html('<%= j render("form") %>');
+
+// Show dynamic dialog
+$('#modalCategories').modal("show");
+
+// Set focus to the first element
+$('#modalCategories').on('shown.bs.modal', function(){
+  $('#category_name').focus();
+}
+);
