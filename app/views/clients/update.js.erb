@@ -1,0 +1,18 @@
+// Close the modal
+$('#modalCategories').modal('toggle');
+
+// Show toaster message
+toastr.info('Categoría actualizada con exíto!', 'Confirmado', {closeButton:true, progressBar: true});
+
+// Replace via Ajax the item edited/updated in a rowtable from the view
+// without asking the server again nor refreshing the page.
+$('#category_<%= @category.id %>').replaceWith(
+  '<tr id="category_<%= @category.id %>" >' +
+    '<td><%= @category.name %></td>' +
+    '<td><%= @category.description %></td>' +
+    '<td>' +
+      '<%= link_to "Editar", edit_category_path(@category), class: "btn btn-xs btn-info", remote: true %>' +
+      '<%= link_to "Desactivar", @category, class: "btn btn-xs btn-danger", remote: true, method: :delete, data: { confirm: "¿Desea Borrar la Categoría: #{@category.name}?"} %>' +
+    '</td>'+ 
+  '</tr>'
+);
