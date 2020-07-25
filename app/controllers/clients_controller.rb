@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[create]
+  before_action :set_client, only: %i[edit]
   def index
     @clients = Client.all
   end
@@ -19,10 +20,16 @@ class ClientsController < ApplicationController
     end
   end
 
+  def edit; end
+
   private
 
   def client_params
     params.require(:client).permit(:name, :email, :address, :telephone)
   end
+
+  def set_client
+    @client = Client.find(params[:id])
+  end
 end
-                                      
+                                  
