@@ -1,0 +1,14 @@
+// Add the dialog title
+$('#modal-clients-title').html("Nueva Categoria");
+
+// Render the new-form
+$('#modal-body-clients').html('<%= j render("form") %>');
+
+// Show dynamic dialog
+$('#modalClients').modal("show");
+
+// Set focus to the first element
+$('#modalClients').on('shown.bs.modal', function(){
+  $('#client_name').focus();
+}
+);	
