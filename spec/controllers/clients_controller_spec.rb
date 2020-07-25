@@ -108,5 +108,60 @@ RSpec.describe ClientsController, type: :controller do
       end
     end
   end
+
+  describe 'PUT update' do
+    subject { put :update, params: params, xhr: true }
+
+    let!(:client) { create(:client) }
+    let( :client2) { build(:client) }
+
+    context 'valid params' do
+      let(:params) do
+        { id: client.id, client: { 
+                                  name: client2.name, 
+                                  email: client2.email,
+                                  address: client2.address,
+                                  telephone: client2.telephone
+                              } }
+      end
+
+      it 'updates client' do
+        expect { subject }
+          .to change { client.reload.name }
+          .from(client.name)
+          .to(params[:client][:name])
+          .and change { client.reload.email }
+          .from(client.email)
+          .to(params[:client][:email])
+          .and change { client.reload.address }
+          .from(client.address)
+          .to(params[:client][:address])
+          .and change { client.reload.telephone }
+          .from(client.telephone)
+          .to(params[:client][:telephone])
+      end
+      
+      it 'have status ok ' do 
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'invalid params' do
+      let(:params) do
+        { id: client.id, client: { 
+            name: nil,
+            email: nil,
+            address: nil,
+            telephone: nil 
+         } }
+      end
+
+      it 'does not update client' do
+        subject
+        expect(response).to have_http_status(405)
+      end
+    end
+    
+  end
 end 
  
