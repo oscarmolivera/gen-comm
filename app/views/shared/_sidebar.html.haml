@@ -13,32 +13,33 @@
   %li.nav-item.active
     %a.nav-link{href: root_path}
       %i.fas.fa-fw.fa-tachometer-alt
-      %span Dashboard
+      %span 
+        =t('.menu.dashboard')
   / Divider
   %hr.sidebar-divider/
   / Heading
   .sidebar-heading
-    Interface
-  / Nav Item - Categories
-  %li.nav-item
-    %a.nav-link.collapsed{href: categories_path}
-      %i.fas.fa-fw.fa-list
-      %span Categorias 
+    =t('.menu.interface')
   / Nav Item - Pages Collapse Menu
   %li.nav-item
     %a.nav-link.collapsed{"aria-controls" => "collapseTwo", "aria-expanded" => "true", "data-target" => "#collapseTwo", "data-toggle" => "collapse", :href => "#"}
       %i.fas.fa-fw.fa-cog
-      %span Components
+      %span
+        =t('.menu.resourses')
     #collapseTwo.collapse{"aria-labelledby" => "headingTwo", "data-parent" => "#accordionSidebar"}
       .bg-white.py-2.collapse-inner.rounded
-        %h6.collapse-header Custom Components:
-        %a.collapse-item{:href => "buttons.html"} Buttons
-        %a.collapse-item{:href => "cards.html"} Cards
+        %h6.collapse-header
+          =t('.menu.custom_components')
+        %a.collapse-item{href: categories_path}
+          =t('.menu.categories')
+        %a.collapse-item{:href => clients_path}
+          =t('.menu.clients')
   / Nav Item - Utilities Collapse Menu
   %li.nav-item
     %a.nav-link.collapsed{"aria-controls" => "collapseUtilities", "aria-expanded" => "true", "data-target" => "#collapseUtilities", "data-toggle" => "collapse", :href => "#"}
       %i.fas.fa-fw.fa-wrench
-      %span Utilities
+      %span
+        =t('.menu.utillities')
     #collapseUtilities.collapse{"aria-labelledby" => "headingUtilities", "data-parent" => "#accordionSidebar"}
       .bg-white.py-2.collapse-inner.rounded
         %h6.collapse-header Custom Utilities:
