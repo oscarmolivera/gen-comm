@@ -10285,11 +10285,11 @@ a:focus {
 }
 
 .topbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
-  color: #b7b9cc;
+  color: #2e59d9; 
 }
 
 .topbar.navbar-light .navbar-nav .nav-item .nav-link:active {
-  color: #858796;
+  color: #2e59d9; 
 }
 
 .sidebar {
@@ -11219,4 +11219,10 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
+}
+
+.top-active {
+   font-weight: 600;
+  background: #ededee;
+  border-radius: 50px;
 }
