@@ -3,4 +3,7 @@
 $('#category_<%= @category.id %>').fadeOut();
 
 // Show toaster message
-toastr.warning('Categoría eliminada con exíto!', 'Confirmado', {closeButton:true, progressBar: true});
+toastr.warning("<%= t('toastr.category.delete') %>", 
+               "<%= t('toastr.category.alert') %>", 
+               {closeButton:true, progressBar: true
+              });
