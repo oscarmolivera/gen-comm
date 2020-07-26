@@ -1,0 +1,56 @@
+es:
+  toastr:
+    category:
+      confirm: Confirmado!
+      alert: Advertencia!
+      created: Categoría creada con exíto!
+      delete: Categoría eliminada con exíto!
+      edit: Editar Categoría
+      new: Nueva Categoría
+      updated: Categoría actualizada con exíto!
+  shared:
+    sidebar:
+      menu:
+        resourses: Recursos
+        dashboard: Escritorio
+        custom_components:  Listado
+        categories: Categorías
+        clients: Clientes
+    footer:
+      site: Copyright © Gen Comm  2020     
+  categories:
+    index:
+      category_title: Categorias
+      category_desc: Crear, editar o desactivar categorias de la aplicacion.
+      category_list: Listado de Categorias Activas
+      new_button: Nueva Categoría
+      table:
+        name: Nombre Categoría
+        description: Descripción
+        actions: Acciones
+        edit: Editar
+        delete: Borrar
+        confirm_message: "¿Desea Borrar la Categoría: %{name}?"
+    create:
+      toastr:
+        edit: Editar
+        delete: Borrar
+    update:
+      toastr:
+        edit: Editar
+        delete: Mariguana    
+    form:
+      title: Datos Categoría
+      name: "Nombre Categoría:"
+      description: "Descripción:"
+      placeholder:
+        name: Ingrese nombre de categoría...
+        description: Ingrese descripción...
+      submit:
+        create: Crear Categoría  
+        edit: Actualizar Categoría
+    modal:
+      close: Cerrar    
+
+
+
