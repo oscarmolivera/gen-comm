@@ -165,5 +165,21 @@ RSpec.describe SuppliersController, type: :controller do
     end
     
   end
+
+  describe 'DELETE destroy' do
+    subject { delete :destroy, params: params, xhr: true }
+
+    let!(:supplier) { create(:supplier) }
+
+    context 'valid params' do
+      let(:params) do
+        { id: supplier.id }
+      end
+
+      it 'deletes category' do
+        expect { subject }.to change(Supplier, :count).by(-1)
+      end 
+    end
+  end
 end
  

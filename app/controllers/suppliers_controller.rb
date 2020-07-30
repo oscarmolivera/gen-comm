@@ -1,5 +1,5 @@
 class SuppliersController < ApplicationController
-  before_action :set_supplier, only: %i[edit update]
+  before_action :set_supplier, only: %i[edit update destroy]
   def index
     @suppliers = Supplier.all
   end
@@ -29,6 +29,11 @@ class SuppliersController < ApplicationController
         format.js { render :new, status: :method_not_allowed }
       end
     end
+  end
+
+  def destroy
+    @supplier.destroy
+    respond_to { |format| format.js }
   end
 
   private
