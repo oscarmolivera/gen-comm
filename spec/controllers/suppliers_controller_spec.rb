@@ -90,5 +90,24 @@ RSpec.describe SuppliersController, type: :controller do
   describe 'GET show' do
     # no needed in this case
   end
-end 
+
+  describe 'GET edit' do
+    subject { get :edit, params: params, xhr: true }
+    context 'when params are valid' do
+      let(:params) { { id: supplier.id } }
+
+      let!(:supplier) { create(:supplier) }
+
+      before { subject }
+
+      it 'assigns @supplier' do
+        expect(assigns(:supplier)).to eq(supplier)
+      end
+
+      it 'renders the edit template' do
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
+end
  

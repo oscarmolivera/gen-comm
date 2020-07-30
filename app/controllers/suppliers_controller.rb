@@ -1,4 +1,5 @@
 class SuppliersController < ApplicationController
+  before_action :set_supplier, only: %i[edit]
   def index
     @suppliers = Supplier.all
   end
@@ -18,6 +19,8 @@ class SuppliersController < ApplicationController
     end
   end
 
+  def edit; end
+
   private
 
   def supplier_params
@@ -26,5 +29,5 @@ class SuppliersController < ApplicationController
 
   def set_supplier
     @supplier = Supplier.find(params[:id])
-  end
+  end 
 end
