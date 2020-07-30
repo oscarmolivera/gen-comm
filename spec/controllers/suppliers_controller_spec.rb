@@ -109,5 +109,61 @@ RSpec.describe SuppliersController, type: :controller do
       end
     end
   end
+
+  describe 'PUT update' do
+    subject { put :update, params: params, xhr: true }
+
+    let!(:supplier) { create(:supplier) }
+    let( :supplier2) { build(:supplier) }
+
+    context 'valid params' do
+      let(:params) do
+        { id: supplier.id, supplier: { 
+                                  name: supplier2.name, 
+                                  email: supplier2.email,
+                                  address: supplier2.address,
+                                  telephone: supplier2.telephone,
+                                  photo: supplier2.photo
+                              } }
+      end
+
+      it 'updates supplier' do
+        expect { subject }
+          .to change { supplier.reload.name }
+          .from(supplier.name)
+          .to(params[:supplier][:name])
+          .and change { supplier.reload.email }
+          .from(supplier.email)
+          .to(params[:supplier][:email])
+          .and change { supplier.reload.address }
+          .from(supplier.address)
+          .to(params[:supplier][:address])
+          .and change { supplier.reload.telephone }
+          .from(supplier.telephone)
+          .to(params[:supplier][:telephone])
+      end
+      
+      it 'have status ok ' do 
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'invalid params' do
+      let(:params) do
+        { id: supplier.id, supplier: { 
+            name: nil,
+            email: nil,
+            address: nil,
+            telephone: nil 
+         } }
+      end
+
+      it 'does not update supplier' do
+        subject
+        expect(response).to have_http_status(405)
+      end
+    end
+    
+  end
 end
  

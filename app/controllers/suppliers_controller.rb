@@ -1,5 +1,5 @@
 class SuppliersController < ApplicationController
-  before_action :set_supplier, only: %i[edit]
+  before_action :set_supplier, only: %i[edit update]
   def index
     @suppliers = Supplier.all
   end
@@ -20,6 +20,16 @@ class SuppliersController < ApplicationController
   end
 
   def edit; end
+
+  def update
+    respond_to do |format|
+      if @supplier.update(supplier_params)
+        format.js
+      else
+        format.js { render :new, status: :method_not_allowed }
+      end
+    end
+  end
 
   private
 
