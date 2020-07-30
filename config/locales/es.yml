@@ -16,6 +16,7 @@ es:
         custom_components:  Listado
         categories: Categorías
         clients: Clientes
+        suppliers: Proveedores
     footer:
       site: Copyright © Gen Comm  2020     
   categories:
@@ -50,7 +51,37 @@ es:
         create: Crear Categoría  
         edit: Actualizar Categoría
     modal:
-      close: Cerrar    
-
-
-
+      close: Cerrar
+  suppliers:
+    index:
+      supplier_title: Proveedores
+      supplier_desc: Crear, editar o desactivar proveedores de la aplicacion.
+      supplier_list: Listado de Proveedores Activos
+      new_button: Nuevo Proveedor
+      table:
+        name: Nombre de Proveedor
+        description: Descripción
+        actions: Acciones
+        edit: Editar
+        delete: Borrar
+        confirm_message: "¿Desea Borrar el Proveedor: %{name}?"
+    create:
+      toastr:
+        edit: Editar
+        delete: Borrar
+    update:
+      toastr:
+        edit: Editar
+        delete: Borrar    
+    form:
+      title: Datos del Proveedor
+      name: "Nombre del Proveedor:"
+      description: "Descripción:"
+      placeholder:
+        name: Ingrese nombre de proveedor...
+        description: Ingrese descripción...
+      submit:
+        create: Crear Proveedor  
+        edit: Actualizar Proveedor
+    modal:
+      close: Cerrar      

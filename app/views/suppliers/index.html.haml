@@ -1,1 +1,40 @@
-%h1='Miranda'
+%h1.h3.mb-2.text-gray-800
+  = t('.supplier_title')
+%p.mb-4
+  = t('.supplier_desc')
+
+.card.shadow.md-4
+  .card-header.py-3
+    %h6.m-0.font-weight-bold.text-primary
+      = t('.supplier_list')
+  .px-4.pt-2
+    =link_to  new_supplier_path, id: 'add-new-supplier', class:'btn btn-success', remote: true do
+      %span.fas.fa-plus-square    
+      = t('.new_button')
+  .card-body
+    .table-responsive
+      %table#tablaSuppliers.table.table-border{:width => "100%"}
+        %thead
+          %tr
+            %th=t('.table.name')
+            %th=t('.table.description')
+            %th=t('.table.actions')
+        %tbody
+          - @suppliers.each do |supplier|
+            %tr{:id => "supplier_#{supplier.id}"}
+              %td= supplier.name
+              %td= supplier.description
+              %td
+                = link_to t('.table.edit'), edit_supplier_path(supplier), class: 'btn btn-xs btn-info', remote: true
+                = link_to t('.table.delete'), supplier, class: 'btn btn-xs btn-danger', remote: true, method: :delete, data: { confirm: t('.table.confirm_message',name: supplier.name)}
+
+/= render 'modal'
+
+:javascript
+  $( document ).ready( function(){
+    $('#tablaSuppliers').DataTable({
+       "iDisplayLength": 5,
+       "lengthMenu": [[5, 10, 15, 20, 25, 50, -1], [5, 10, 15, 20, 25, 50, "All"]]
+    });
+  });
+

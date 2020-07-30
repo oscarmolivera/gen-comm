@@ -1,5 +1,6 @@
 class SuppliersController < ApplicationController
   before_action :set_supplier, only: %i[edit update destroy]
+  skip_before_action :verify_authenticity_token, only: %i[create update destroy]
   def index
     @suppliers = Supplier.all
   end
