@@ -26,5 +26,22 @@ RSpec.describe SuppliersController, type: :controller do
       end
     end
   end
-end
+
+  describe 'GET new' do
+
+    before { get :new, xhr: true }
+
+    it 'assigns @Supplier' do
+      expect(assigns(:supplier)).to be_a_new(Supplier)
+    end
+
+    it 'renders the new template' do
+      expect(response).to render_template(:new)
+    end
+
+    it do
+      expect(response).to have_http_status(200)
+    end
+  end
+end 
  
