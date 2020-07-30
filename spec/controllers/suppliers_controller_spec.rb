@@ -43,5 +43,48 @@ RSpec.describe SuppliersController, type: :controller do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'POST create' do
+    subject { post :create, params: params, xhr: true }
+    let(:supplier) { build(:supplier) }
+  
+    context 'valid params' do
+      let(:params) do
+        { supplier: { name: supplier.name, 
+                      email: supplier.email,
+                      address: supplier.address,
+                      telephone: supplier.telephone,
+                      photo: supplier.photo } }
+      end
+
+      it 'creates new supplier' do
+        expect { subject }.to change(Supplier, :count).by(1)
+      end
+
+      it 'method create is success' do
+        subject
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context 'invalid params' do
+      let(:params) do
+        { supplier: { name: nil,
+                      email: nil,
+                      address: nil,
+                      telephone: nil,
+                      photo: nil } }
+      end
+
+      it 'does not create new supplier' do
+        expect { subject }.not_to change(Supplier, :count)
+      end
+
+      it do
+        subject
+        expect(response).to have_http_status(405)
+      end
+    end
+  end
 end 
  
