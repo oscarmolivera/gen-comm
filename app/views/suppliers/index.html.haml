@@ -28,7 +28,7 @@
                 = link_to t('.table.edit'), edit_supplier_path(supplier), class: 'btn btn-xs btn-info', remote: true
                 = link_to t('.table.delete'), supplier, class: 'btn btn-xs btn-danger', remote: true, method: :delete, data: { confirm: t('.table.confirm_message',name: supplier.name)}
 
-/= render 'modal'
+= render 'modal'
 
 :javascript
   $( document ).ready( function(){

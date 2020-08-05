@@ -8,6 +8,14 @@ es:
       edit: Editar Categoría
       new: Nueva Categoría
       updated: Categoría actualizada con exíto!
+    suppliers:
+      confirm: Confirmado!
+      alert: Advertencia!
+      created: Categoría creada con exíto!
+      delete: Categoría eliminada con exíto!
+      edit: Editar Categoría
+      new: Nuevo Proveedor
+      updated: Categoría actualizada con exíto!  
   shared:
     sidebar:
       menu:
@@ -76,10 +84,16 @@ es:
     form:
       title: Datos del Proveedor
       name: "Nombre del Proveedor:"
-      description: "Descripción:"
+      email: "Email:"
+      address: "Dirección:"
+      telephone: "Teléfono:"
+      photo: "Fotografía:"
       placeholder:
-        name: Ingrese nombre de proveedor...
-        description: Ingrese descripción...
+        name: Ingrese nombre...
+        email: Ingrese email...
+        address: Ingrese dirección...
+        telephone: Ingrese teléfono...
+        photo: Ingrese foto...
       submit:
         create: Crear Proveedor  
         edit: Actualizar Proveedor

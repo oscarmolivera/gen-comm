@@ -1,0 +1,42 @@
+= form_for @supplier, remote: true do |f|
+  .form-group
+    %h4.control-label
+      /='Datos Suppliers'
+      = t('.title')
+  %div{:class => "item form-group#{@supplier.errors[:name].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :name, t('.name')
+    .input-group
+      = f.text_field :name, class: 'form-control', placeholder: t('.placeholder.name') 
+      - if @supplier.errors[:name].any?
+        %p.categories-errors
+          = @supplier.errors[:name].to_s[/\w([^"]*)/]
+  %div{:class => "item form-group#{@supplier.errors[:email].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :email, t('.email') 
+    .input-group
+      = f.email_field :email, class: 'form-control', placeholder: t('.placeholder.email')
+      - if @supplier.errors[:email].any?
+        %p.categories-errors
+          = @supplier.errors[:email].to_s[/\w([^"]*)/]
+  %div{:class => "item form-group#{@supplier.errors[:address].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :address, t('.address') 
+    .input-group
+      = f.text_field :address, class: 'form-control', placeholder: t('.placeholder.address') 
+      - if @supplier.errors[:address].any?
+        %p.categories-errors
+          = @supplier.errors[:address].to_s[/\w([^"]*)/]
+  %div{:class => "item form-group#{@supplier.errors[:telephone].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :telephone, t('.telephone')
+    .input-group
+      = f.text_field :telephone, class: 'form-control', placeholder: t('.placeholder.telephone') 
+      - if @supplier.errors[:telephone].any?
+        %p.categories-errors
+          = @supplier.errors[:telephone].to_s[/\w([^"]*)/]
+  %div{:class => "item form-group#{@supplier.errors[:photo].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :photo, t('.photo')
+    .input-group
+      = f.text_field :photo, class: 'form-control', placeholder: t('.placeholder.photo') 
+      - if @supplier.errors[:photo].any?
+        %p.categories-errors
+          = @supplier.errors[:photo].to_s[/\w([^"]*)/]                        
+  .actions.col-md-9.col-sm-9.col-xs12.col-md-offset-3
+    = f.submit @supplier.new_record? ? t('.submit.create') : t('.submit.edit'), class: 'btn btn-success'

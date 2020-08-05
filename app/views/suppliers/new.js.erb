@@ -1,0 +1,14 @@
+// Add the dialog title
+$('#modal-suppliers-title').html("<%= t('toastr.suppliers.new') %>");
+
+// Render the new-form
+$('#modal-body-suppliers').html('<%= j render("form") %>');
+
+// Show dynamic dialog
+$('#modalSuppliers').modal("show");
+
+// Set focus to the first element
+$('#modalSuppliers').on('shown.bs.modal', function(){
+  $('#client_name').focus();
+}
+);	

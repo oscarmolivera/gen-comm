@@ -1,0 +1,12 @@
+/ Modal Suppliers
+.modal.fade{"aria-labelledby" => "modalSuppliersLabel", :role => "dialog", :tabindex => "-1", id: "modalSuppliers"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#modal-suppliers-title.modal-title
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      #modal-body-suppliers.modal-body-suppliers.modal-body
+      #modal-footer-suppliers.modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
+          = t('.close')
