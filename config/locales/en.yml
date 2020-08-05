@@ -1,95 +1,104 @@
 en:
   toastr:
     category:
-      confirm: Confirmado!
-      alert: Advertencia!
-      created: Categoría creada con exíto!
-      delete: Categoría eliminada con exíto!
-      edit: Editar Categoría
-      new: Nueva Categoría
-      updated: Categoría actualizada con exíto!
+      confirm: Confirm!
+      alert: Caution!
+      created: Success Category created!
+      delete: Category deleted!
+      edit: Edit Category
+      new: New Category
+      updated: Category updated!
     suppliers:
-      confirm: Confirmado!
-      alert: Advertencia!
-      created: Categoría creada con exíto!
-      delete: Categoría eliminada con exíto!
-      edit: Editar Categoría
+      confirm: Confirm!
+      alert: Caution!
+      created: Supplier created!
+      delete: Supplier deleted!
+      edit: Edit Supplier
       new: New Supplier
-      updated: Categoría actualizada con exíto!  
+      updated: Supplier updated!  
   shared:
     sidebar:
       menu:
-        resourses: Recursos
-        dashboard: Escritorio
-        custom_components:  Listado
-        categories: Categorías
-        clients: Clientes
-        suppliers: Proveedores
+        resourses: Resourses
+        dashboard: Dashboard
+        custom_components:  Components
+        categories: Categories
+        clients: Clients
+        suppliers: Suppliers
     footer:
       site: Copyright © Gen Comm  2020     
   categories:
     index:
-      category_title: Categorias
-      category_desc: Crear, editar o desactivar categorias de la aplicacion.
-      category_list: Listado de Categorias Activas
-      new_button: Nueva Categoría
+      category_title: Categories
+      category_desc: Create, edit o delete categories from the application.
+      category_list: Active Categorias List
+      new_button: New Category
       table:
-        name: Nombre Categoría
-        description: Descripción
-        actions: Acciones
-        edit: Editar
-        delete: Borrar
-        confirm_message: "¿Desea Borrar la Categoría: %{name}?"
+        name: Category Name
+        description: Description
+        actions: Actions
+        edit: Edit
+        delete: Delete
+        confirm_message: "¿Do you wish to delete this Category: %{name}?"
     create:
       toastr:
-        edit: Editar
-        delete: Borrar
+        edit: Edit
+        delete: Delete
     update:
       toastr:
         edit: Editar
-        delete: Mariguana    
+        delete: Delete    
     form:
-      title: Datos Categoría
-      name: "Nombre Categoría:"
-      description: "Descripción:"
+      title: Category Info
+      name: " Category Nombre:"
+      description: "Description:"
       placeholder:
-        name: Ingrese nombre de categoría...
-        description: Ingrese descripción...
+        name: Insert category name...
+        description: Insert description...
       submit:
-        create: Crear Categoría  
-        edit: Actualizar Categoría
+        create: Create Category  
+        edit: Update Category
     modal:
-      close: Cerrar
+      close: Close
   suppliers:
     index:
-      supplier_title: Proveedores
-      supplier_desc: Crear, editar o desactivar proveedores de la aplicacion.
-      supplier_list: Listado de Proveedores Activos
-      new_button: Nuevo Proveedor
+      supplier_title: Suppliers
+      supplier_desc: Create, edit o delete supplier_list from the application.
+      supplier_list: Active Suppliers List
+      new_button: New Suppliers
       table:
-        name: Nombre de Proveedor
-        description: Descripción
-        actions: Acciones
-        edit: Editar
-        delete: Borrar
-        confirm_message: "¿Desea Borrar el Proveedor: %{name}?"
+        name: Suppliers Name
+        email: Email
+        address: Address
+        telephone: Telephone
+        photo: Photo
+        actions: Accions
+        edit: Edit
+        delete: Delete
+        confirm_message: "¿Do you wish to delete this Supplier: %{name}?"
     create:
       toastr:
-        edit: Editar
-        delete: Borrar
+        edit: Edit
+        delete: Delete
     update:
       toastr:
-        edit: Editar
-        delete: Borrar    
+        edit: Edit
+        delete: Delete   
     form:
-      title: Datos del Proveedor
-      name: "Nombre del Proveedor:"
-      description: "Descripción:"
+      title: Supplier Info
+      name: "Supplier Name:"
+      email: "Email:"
+      address: "Address:"
+      telephone: "Telephone:"
+      photo: "Photo:"
       placeholder:
-        name: Ingrese nombre de proveedor...
-        description: Ingrese descripción...
+        name: "Insert Name..."
+        email: "Insert Email..."
+        address: "Insert Address..."
+        telephone: "Insert Telephone..."
+        photo: "Insert Photo..."
       submit:
-        create: Crear Proveedor  
-        edit: Actualizar Proveedor
+        create: Create Supplier
+        edit: Update Supplier
     modal:
-      close: Cerrar      
+      close: Close      
