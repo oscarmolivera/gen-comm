@@ -1,0 +1,9 @@
+// Remove via Ajax the item deleted in a rowtable from the view
+// without asking the server again nor refreshing the page.
+$('#supplier_<%= @supplier.id %>').fadeOut();
+
+// Show toaster message
+toastr.warning("<%= t('toastr.suppliers.delete') %>", 
+               "<%= t('toastr.suppliers.alert') %>", 
+               {closeButton:true, progressBar: true
+              });
