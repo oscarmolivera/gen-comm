@@ -1,0 +1,22 @@
+// Close the modal
+$('#modalSuppliers').modal('toggle');
+
+toastr.success("<%= t('toastr.suppliers.created') %>", 
+               "<%= t('toastr.suppliers.confirm') %>", 
+               {closeButton:true, progressBar: true
+              });
+
+// Add via Ajax the new item created in a rowtable from the view
+// without asking the server again nor refreshing the page.
+$('#tablaSuppliers').append(
+  '<tr id="supplier_<%= @supplier.id %>" >' + 
+    '<td><%= @supplier.name %></td>' +
+    '<td><%= @supplier.email %></td>' +
+    '<td><%= @supplier.address %></td>' +
+    '<td><%= @supplier.telephone %></td>' +
+    '<td>' +
+      '<%= link_to t(".toastr.edit"), edit_supplier_path(@supplier), class: "btn btn-xs btn-info", remote: true %>' +
+      '<%= link_to t(".toastr.delete"), @supplier, class: "btn btn-xs btn-danger", remote: true, method: :delete, data: { confirm: "¿Desea Borrar el Proveedor: #{@supplier.name}?"} %>' +
+    '</td>'+ 
+  '</tr>'
+);

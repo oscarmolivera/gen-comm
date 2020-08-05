@@ -11,11 +11,11 @@ es:
     suppliers:
       confirm: Confirmado!
       alert: Advertencia!
-      created: Categoría creada con exíto!
-      delete: Categoría eliminada con exíto!
-      edit: Editar Categoría
+      created: Proveedor creado con exíto!
+      delete: Proveedor eliminado con exíto!
+      edit: Editar Proveedor
       new: Nuevo Proveedor
-      updated: Categoría actualizada con exíto!  
+      updated: Proveedor actualizado con exíto!  
   shared:
     sidebar:
       menu:
