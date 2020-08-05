@@ -8,6 +8,14 @@ es:
       edit: Editar Categoría
       new: Nueva Categoría
       updated: Categoría actualizada con exíto!
+    clients:
+      confirm: Confirmado!
+      alert: Advertencia!
+      created: Cliente creado con exíto!
+      delete: Cliente eliminado con exíto!
+      edit: Editar Cliente
+      new: Nuevo Cliente
+      updated: Cliente actualizado con exíto!   
     suppliers:
       confirm: Confirmado!
       alert: Advertencia!
@@ -60,6 +68,45 @@ es:
         edit: Actualizar Categoría
     modal:
       close: Cerrar
+  clients:
+    index:
+      client_title: Proveedores
+      client_desc: Crear, editar o desactivar proveedores de la aplicacion.
+      client_list: Listado de Proveedores Activos
+      new_button: Nuevo Proveedor
+      table:
+        name: Nombre Cliente
+        address: Dirección
+        email: Correo
+        telephone: Teléfono
+        actions: Acciones
+        edit: Editar
+        delete: Borrar
+        confirm_message: "¿Desea Borrar el Cliente: %{name}?"
+    create:
+      toastr:
+        edit: Editar
+        delete: Borrar
+    update:
+      toastr:
+        edit: Editar
+        delete: Borrar    
+    form:
+      title: Datos del Cliente
+      name: "Nombre del Cliente:"
+      email: "Correo:"
+      address: "Dirección:"
+      telephone: "Teléfono:"
+      placeholder:
+        name: Ingrese nombre...
+        email: Ingrese email...
+        address: Ingrese dirección...
+        telephone: Ingrese teléfono...
+      submit:
+        create: Crear Cliente  
+        edit: Actualizar Cliente
+    modal:
+      close: Cerrar 
   suppliers:
     index:
       supplier_title: Proveedores

@@ -1,10 +1,9 @@
 = form_for @category, remote: true do |f|
   .form-group
     %h4.control-label
-      /='Datos Categoría'
       = t('.title')
   %div{:class => "item form-group#{@category.errors[:name].any? ? 'has-error has-feedback' : ''}"}
-    = f.label :name, t('.name') #'Nombre Categoría'
+    = f.label :name, t('.name')
     .input-group
       = f.text_field :name, class: 'form-control', placeholder: t('.placeholder.name') 
       - if @category.errors[:name].any?

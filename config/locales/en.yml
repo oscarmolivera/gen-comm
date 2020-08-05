@@ -8,6 +8,14 @@ en:
       edit: Edit Category
       new: New Category
       updated: Category updated!
+    clients:
+      confirm: Confirm!
+      alert: Caution!
+      created: Success Client created!
+      delete: Client deleted!
+      edit: Edit Client
+      new: New Client
+      updated: Client updated!      
     suppliers:
       confirm: Confirm!
       alert: Caution!
@@ -60,6 +68,45 @@ en:
         edit: Update Category
     modal:
       close: Close
+  clients:
+    index:
+      client_title: Clients
+      client_desc: Create, edit o delete clients from the application.
+      client_list: Active Categorias List
+      new_button: New Client
+      table:
+        name: Client Name
+        address: Address
+        email: Email
+        telephone: Telephone
+        actions: Actions
+        edit: Edit
+        delete: Delete
+        confirm_message: "¿Do you wish to delete this Client: %{name}?"
+    create:
+      toastr:
+        edit: Edit
+        delete: Delete
+    update:
+      toastr:
+        edit: Editar
+        delete: Delete    
+    form:
+      title: Client Info
+      name: Client Name
+      address: Address
+      email: Email
+      telephone: Telephone
+      placeholder:
+        name: Insert Client Name...
+        address: Insert Client Address...
+        email: Insert Client Email...
+        telephone: Insert Client Telephone...
+      submit:
+        create: Create Client  
+        edit: Update Client
+    modal:
+      close: Close    
   suppliers:
     index:
       supplier_title: Suppliers

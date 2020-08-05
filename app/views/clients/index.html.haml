@@ -1,26 +1,26 @@
 %h1.h3.mb-2.text-gray-800
-  ='Clientes'
+  = t('.client_title')
 %p.mb-4
-  ='Crear, editar o borrar clientes de la aplicacion.'
+  = t('.client_desc')
 
 .card.shadow.md-4
   .card-header.py-3
     %h6.m-0.font-weight-bold.text-primary
-      ='Listado de Clientes'
+      = t('.client_list')
   .px-4.pt-2
     =link_to  new_client_path, id: 'add-new-client', class:'btn btn-success', remote: true do
       %span.fas.fa-plus-square    
-      = 'Nuevo Cliente'
+      = t('.new_button')
   .card-body
     .table-responsive
       %table#tableClients.table.table-border{:width => "100%"}
         %thead
           %tr
-            %th='Nombre Cliente'
-            %th='Dirección'
-            %th='Email'
-            %th='Teléfono'
-            %th='Actiones'
+            %th=t('.table.name')
+            %th=t('.table.address')
+            %th=t('.table.email')
+            %th=t('.table.telephone')
+            %th=t('.table.actions')
         %tbody
           - @clients.each do |client|
             %tr{:id => "client_#{client.id}"}
@@ -29,8 +29,8 @@
               %td= client.email
               %td= client.telephone
               %td
-                = link_to 'Editar', edit_client_path(client), class: 'btn btn-xs btn-info', remote: true
-                = link_to 'Borrar', client, class: 'btn btn-xs btn-danger', remote: true, method: :delete, data: { confirm: "¿Desea Borrar Este Cliente: #{client.name}?"}
+                = link_to t('.table.edit'), edit_client_path(client), class: 'btn btn-xs btn-info', remote: true
+                = link_to t('.table.delete'), client, class: 'btn btn-xs btn-danger', remote: true, method: :delete, data: { confirm: t('.table.confirm_message',name: client.name)}
 = render 'modal_clients'
 
 :javascript
