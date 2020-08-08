@@ -32,7 +32,7 @@ RSpec.describe ClientsController, type: :controller do
         end
       end
     end
-    
+
     context 'when NO user is logged in' do
       before { get :index }
       it 'does not render the index template' do
@@ -50,19 +50,41 @@ RSpec.describe ClientsController, type: :controller do
   end
 
   describe 'GET new' do
+    subject { get :new, xhr: true }
+    
+    context 'when user IS logged in' do 
+      let(:user) { create(:user) }
 
-    before { get :new, xhr: true }
+      before do
+        sign_in(user)
+        subject
+      end
 
-    it 'assigns @client' do
-      expect(assigns(:client)).to be_a_new(Client)
+      it 'assigns @client' do
+        expect(assigns(:client)).to be_a_new(Client)
+      end
+
+      it 'renders the new template' do
+        expect(response).to render_template(:new)
+      end
+
+      it do
+        expect(response).to have_http_status(200)
+      end
     end
+    context 'when NO user is logged in' do 
+      before { subject }
+      it 'does not assign @category' do
+        expect(assigns(:category)).to eq(nil)
+      end
 
-    it 'renders the new template' do
-      expect(response).to render_template(:new)
-    end
+      it 'does not render the new template' do
+        expect(response).not_to render_template(:new)
+      end
 
-    it do
-      expect(response).to have_http_status(200)
+      it do
+        expect(response).to have_http_status(401)
+      end
     end
   end
 
