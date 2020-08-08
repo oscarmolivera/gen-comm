@@ -50,18 +50,42 @@ RSpec.describe SuppliersController, type: :controller do
 
   describe 'GET new' do
 
-    before { get :new, xhr: true }
+    subject { get :new, xhr: true }
 
-    it 'assigns @Supplier' do
-      expect(assigns(:supplier)).to be_a_new(Supplier)
+    context 'when user IS logged in' do
+      let(:user) { create(:user) }
+
+      before do
+        sign_in(user)
+        subject
+      end
+
+      it 'assigns @Supplier' do
+        expect(assigns(:supplier)).to be_a_new(Supplier)
+      end
+  
+      it 'renders the new template' do
+        expect(response).to render_template(:new)
+      end
+  
+      it 'rendes template OK' do
+        expect(response).to have_http_status(200)
+      end
     end
 
-    it 'renders the new template' do
-      expect(response).to render_template(:new)
-    end
+    context 'when NO user is logged in' do 
+      before { subject }
+      it 'does not assign @supplier' do
+        expect(assigns(:supplier)).to eq(nil)
+      end
 
-    it do
-      expect(response).to have_http_status(200)
+      it 'does not render the new template' do
+        expect(response).not_to render_template(:new)
+      end
+
+      it 'response code:Unauthorized' do
+        expect(response).to have_http_status(401)
+      end
     end
   end
 
