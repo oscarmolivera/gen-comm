@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :info, :warning
   before_action :authenticate_user!
   before_action :set_locale
+  layout :layout_by_resource
 
   private
 
@@ -16,5 +17,9 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     { locale: I18n.locale }
+  end
+
+  def layout_by_resource
+    devise_controller? ? 'devise' : 'application'
   end
 end
