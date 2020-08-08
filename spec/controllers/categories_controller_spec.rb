@@ -189,7 +189,7 @@ RSpec.describe CategoriesController, type: :controller do
         end
       end
     end
-    
+
     context 'when NO user is logged in' do
       let(:params) { { id: 1 } }
       context 'and params are valid' do
@@ -206,40 +206,57 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe 'PUT update' do
     subject { put :update, params: params, xhr: true }
-
     let!(:category) { create(:category) }
 
-    context 'valid params' do
-      let(:params) do
-        { id: category.id, category: { name: 'kot', description: 'New Description' } }
-      end
-
-      it 'updates category' do
-        expect { subject }
-          .to change { category.reload.name }
-          .from(category.name)
-          .to(params[:category][:name])
-          .and change { category.reload.description }
-          .from(category.description)
-          .to(params[:category][:description])
-      end
+    context 'when user IS logged in' do
       
-      it 'have status ok ' do 
-        expect(response).to have_http_status(:ok)
+      let(:user) { create(:user) }
+      before{ sign_in(user)}
+      
+      context 'and sends valid params' do
+        let(:params) do
+          { id: category.id, category: { name: 'kot', description: 'New Description' } }
+        end
+
+        it 'updates category' do
+          expect { subject }
+            .to change { category.reload.name }
+            .from(category.name)
+            .to(params[:category][:name])
+            .and change { category.reload.description }
+            .from(category.description)
+            .to(params[:category][:description])
+        end
+        
+        it 'have status ok ' do 
+          expect(response).to have_http_status(:ok)
+        end
+      end
+
+      context 'and sends invalid params' do
+        let(:params) do
+          { id: category.id, category: { name: nil, description: nil  } }
+        end
+
+        it 'does not update category' do
+          subject
+          expect(response).to have_http_status(405)
+        end
       end
     end
 
-    context 'invalid params' do
-      let(:params) do
-        { id: category.id, category: { name: nil, description: nil  } }
-      end
+    context 'when NOT user is logged in' do 
+      context 'and sends valid params' do 
+        let(:params) do
+          { id: category.id, category: { name: 'kot', description: 'New Description' } }
+        end
 
-      it 'does not update category' do
-        subject
-        expect(response).to have_http_status(405)
+        it 'does not update word' do
+          expect { subject }.not_to change { category.reload.name }        
+          expect { subject }.not_to change { category.reload.description }        
+        end
       end
-    end
-    
+    end    
   end
 
   describe 'DELETE destroy' do
