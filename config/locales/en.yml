@@ -39,7 +39,7 @@ en:
     index:
       category_title: Categories
       category_desc: Create, edit o delete categories from the application.
-      category_list: Active Categorias List
+      category_list: Active Categories List
       new_button: New Category
       table:
         name: Category Name
@@ -72,7 +72,7 @@ en:
     index:
       client_title: Clients
       client_desc: Create, edit o delete clients from the application.
-      client_list: Active Categorias List
+      client_list: Active Categories List
       new_button: New Client
       table:
         name: Client Name
