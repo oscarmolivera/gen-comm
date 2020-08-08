@@ -162,20 +162,37 @@ RSpec.describe SuppliersController, type: :controller do
   end
 
   describe 'GET edit' do
+    let(:params) { { id: supplier.id } }
+    let!(:supplier) { create(:supplier) }
     subject { get :edit, params: params, xhr: true }
-    context 'when params are valid' do
-      let(:params) { { id: supplier.id } }
 
-      let!(:supplier) { create(:supplier) }
-
-      before { subject }
-
-      it 'assigns @supplier' do
-        expect(assigns(:supplier)).to eq(supplier)
+    context 'when user IS logged in' do 
+      context 'when params are valid' do
+        let(:user) { create(:user) }
+        before do 
+          sign_in(user)
+          subject 
+        end
+  
+        it 'assigns @supplier' do
+          expect(assigns(:supplier)).to eq(supplier)
+        end
+  
+        it 'renders the edit template' do
+          expect(response).to render_template(:edit)
+        end
       end
+    end
 
-      it 'renders the edit template' do
-        expect(response).to render_template(:edit)
+    context 'when NO user is logged in' do 
+      context 'and sends valid params' do 
+        before { subject }
+        it 'does not assigns @supplier' do
+          expect(assigns(:supplier)).to eq(nil)
+        end
+        it 'response code:Unauthorized' do
+          expect(response).to have_http_status(401)
+        end
       end
     end
   end
