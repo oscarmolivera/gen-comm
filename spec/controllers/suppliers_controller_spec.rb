@@ -93,41 +93,66 @@ RSpec.describe SuppliersController, type: :controller do
     subject { post :create, params: params, xhr: true }
     let(:supplier) { build(:supplier) }
   
-    context 'valid params' do
-      let(:params) do
-        { supplier: { name: supplier.name, 
-                      email: supplier.email,
-                      address: supplier.address,
-                      telephone: supplier.telephone,
-                      photo: supplier.photo } }
-      end
+    context 'when user IS logged in' do
+      let(:user) { create(:user) }
+      before { sign_in(user) }
 
-      it 'creates new supplier' do
-        expect { subject }.to change(Supplier, :count).by(1)
+      context 'valid params' do
+        let(:params) do
+          { supplier: { name: supplier.name, 
+                        email: supplier.email,
+                        address: supplier.address,
+                        telephone: supplier.telephone,
+                        photo: supplier.photo } }
+        end
+  
+        it 'creates new supplier' do
+          expect { subject }.to change(Supplier, :count).by(1)
+        end
+  
+        it 'method create is success' do
+          subject
+          expect(response).to have_http_status(:success)
+        end
       end
-
-      it 'method create is success' do
-        subject
-        expect(response).to have_http_status(:success)
+  
+      context 'invalid params' do
+        let(:params) do
+          { supplier: { name: nil,
+                        email: nil,
+                        address: nil,
+                        telephone: nil,
+                        photo: nil } }
+        end
+  
+        it 'does not create new supplier' do
+          expect { subject }.not_to change(Supplier, :count)
+        end
+  
+        it do
+          subject
+          expect(response).to have_http_status(405)
+        end
       end
     end
 
-    context 'invalid params' do
-      let(:params) do
-        { supplier: { name: nil,
-                      email: nil,
-                      address: nil,
-                      telephone: nil,
-                      photo: nil } }
-      end
-
-      it 'does not create new supplier' do
-        expect { subject }.not_to change(Supplier, :count)
-      end
-
-      it do
-        subject
-        expect(response).to have_http_status(405)
+    context 'when NO user is logged in' do 
+      context 'and sends valid params' do
+        let(:params) do
+          { supplier: { name: supplier.name, 
+                      email: supplier.email,
+                      address: supplier.address,
+                      telephone: supplier.telephone } }
+        end
+  
+        it 'does not creates new supplier' do
+          expect { subject }.not_to change(Supplier, :count)
+        end
+  
+        it 'response code:Unauthorized' do
+          subject
+          expect(response).to have_http_status(401)
+        end
       end
     end
   end
