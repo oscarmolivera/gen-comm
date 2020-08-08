@@ -275,18 +275,29 @@ RSpec.describe ClientsController, type: :controller do
 
   describe 'DELETE destroy' do
     subject { delete :destroy, params: params, xhr: true }
-
     let!(:client) { create(:client) }
-
-    context 'valid params' do
-      let(:params) do
-        { id: client.id }
-      end
-
-      it 'deletes category' do
-        expect { subject }.to change(Client, :count).by(-1)
-      end 
+    let(:params) do
+      { id: client.id }
     end
+    
+    context 'when user IS logged in' do 
+      let(:user) { create(:user) }
+      before { sign_in(user) }
+      context 'valid params' do
+  
+        it 'deletes category' do
+          expect { subject }.to change(Client, :count).by(-1)
+        end 
+      end
+    end
+
+    context 'when NO user is logged in' do
+      context 'and sends valid params' do 
+       it 'deletes category' do
+         expect { subject }.not_to change(Client, :count)
+       end 
+     end
+   end
   end
 end 
  
