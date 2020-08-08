@@ -71,7 +71,7 @@ RSpec.describe CategoriesController, type: :controller do
         expect(response).to have_http_status(200)
       end
     end
-    
+
     context 'when NO user is logged in' do 
       before { get :new, xhr: true }
       
@@ -91,35 +91,74 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe 'POST create' do
     subject { post :create, params: params, xhr: true }
-    let(:category) { build(:category) }
-  
-    context 'valid params' do
-      let(:params) do
-        { category: { name: category.name, description: category.description } }
+
+    context 'when user IS logged in' do
+      let(:user) { create(:user) }
+      let(:category) { build(:category) }
+      
+      before { sign_in(user) }
+
+      context 'valid params' do
+        let(:params) do
+          { category: { name: category.name, description: category.description } }
+        end
+
+        it 'creates new category' do
+          expect { subject }.to change(Category, :count).by(1)
+        end
+
+        it 'method create is success' do
+          subject
+          expect(response).to have_http_status(:success)
+        end
       end
 
-      it 'creates new category' do
-        expect { subject }.to change(Category, :count).by(1)
-      end
+      context 'invalid params' do
+        let(:params) do
+          { category: { name: nil, description: nil } }
+        end
 
-      it 'method create is success' do
-        subject
-        expect(response).to have_http_status(:success)
+        it 'does not create new category' do
+          expect { subject }.not_to change(Category, :count)
+        end
+
+        it do
+          subject
+          expect(response).to have_http_status(405)
+        end
       end
     end
 
-    context 'invalid params' do
-      let(:params) do
-        { category: { name: nil, description: nil } }
+    context 'when NO user id logged in' do 
+      context 'valid params' do
+        let(:category) { build(:category) }
+        let(:params) do
+          { category: { name: category.name, description: category.description } }
+        end
+
+        it 'does not create new category' do
+          expect { subject }.not_to change(Category, :count)
+        end
+
+        it do
+          subject
+          expect(response).to have_http_status(401)
+        end
       end
 
-      it 'does not create new category' do
-        expect { subject }.not_to change(Category, :count)
-      end
+      context 'invalid params' do
+        let(:params) do
+          { category: { name: nil, description: nil } }
+        end
 
-      it do
-        subject
-        expect(response).to have_http_status(405)
+        it 'does not create new category' do
+          expect { subject }.not_to change(Category, :count)
+        end
+
+        it do
+          subject
+          expect(response).to have_http_status(401)
+        end
       end
     end
   end
