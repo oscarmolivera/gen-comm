@@ -3,27 +3,48 @@ require 'rails_helper'
 RSpec.describe CategoriesController, type: :controller do
   
   describe 'GET index' do
-    before { get :index }
 
-    context 'when some categories present' do
-      let!(:category) { create(:category) } 
+    context 'when user IS logged in' do
+      let(:user) { create(:user) }
+      before do
+        sign_in(user)
+        get :index
+      end
+      context 'and some categories present' do
+        let!(:category) { create(:category) } 
 
-      it 'assigns @categories' do
-        expect(assigns(:categories)).to eq([category])
+        it 'assigns @categories' do
+          expect(assigns(:categories)).to eq([category])
+        end
+
+        it 'renders the index template' do
+          expect(response).to render_template(:index)
+        end
       end
 
-      it 'renders the index template' do
-        expect(response).to render_template(:index)
+      context 'and no categories' do
+        it 'assigns @categories' do
+          expect(assigns(:categories)).to eq([])
+        end
+
+        it 'renders the index template' do
+          expect(response).to render_template(:index)
+        end
       end
     end
 
-    context 'when no categories' do
-      it 'assigns @categories' do
-        expect(assigns(:categories)).to eq([])
+    context 'when NO user is logged in' do
+      before { get :index }
+      it 'does not render the index template' do
+        expect(response).not_to render_template(:index)
       end
 
-      it 'renders the index template' do
-        expect(response).to render_template(:index)
+      it do
+        expect(response).to have_http_status(302)
+      end
+
+      it 'redirect to login page' do
+        expect(subject).to redirect_to("/users/sign_in")
       end
     end
   end
