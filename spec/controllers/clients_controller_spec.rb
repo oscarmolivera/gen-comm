@@ -91,40 +91,66 @@ RSpec.describe ClientsController, type: :controller do
   describe 'POST create' do
     subject { post :create, params: params, xhr: true }
     let(:client) { build(:client) }
+
+    context 'when user IS logged in' do 
+      
+      let(:user) { create(:user) }
+      before { sign_in(user) }
+
+      context 'valid params' do
+        let(:params) do
+          { client: { name: client.name, 
+                      email: client.email,
+                      address: client.address,
+                      telephone: client.telephone } }
+        end
   
-    context 'valid params' do
-      let(:params) do
-        { client: { name: client.name, 
-                    email: client.email,
-                    address: client.address,
-                    telephone: client.telephone } }
+        it 'creates new client' do
+          expect { subject }.to change(Client, :count).by(1)
+        end
+  
+        it 'method create is success' do
+          subject
+          expect(response).to have_http_status(:success)
+        end
       end
-
-      it 'creates new client' do
-        expect { subject }.to change(Client, :count).by(1)
-      end
-
-      it 'method create is success' do
-        subject
-        expect(response).to have_http_status(:success)
+  
+      context 'invalid params' do
+        let(:params) do
+          { client: { name: nil,
+                      email: nil,
+                      address: nil,
+                      telephone: nil } }
+        end
+  
+        it 'does not create new client' do
+          expect { subject }.not_to change(Client, :count)
+        end
+  
+        it do
+          subject
+          expect(response).to have_http_status(405)
+        end
       end
     end
 
-    context 'invalid params' do
-      let(:params) do
-        { client: { name: nil,
-                    email: nil,
-                    address: nil,
-                    telephone: nil } }
-      end
-
-      it 'does not create new client' do
-        expect { subject }.not_to change(Client, :count)
-      end
-
-      it do
-        subject
-        expect(response).to have_http_status(405)
+    context 'when NO user is logged in' do 
+      context 'and sends valid params' do
+        let(:params) do
+          { client: { name: client.name, 
+                      email: client.email,
+                      address: client.address,
+                      telephone: client.telephone } }
+        end
+  
+        it 'does not creates new client' do
+          expect { subject }.not_to change(Client, :count)
+        end
+  
+        it 'response code:Unauthorized' do
+          subject
+          expect(response).to have_http_status(401)
+        end
       end
     end
   end
