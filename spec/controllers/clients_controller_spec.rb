@@ -198,57 +198,79 @@ RSpec.describe ClientsController, type: :controller do
 
   describe 'PUT update' do
     subject { put :update, params: params, xhr: true }
-
     let!(:client) { create(:client) }
     let( :client2) { build(:client) }
+    context 'when user IS logged in' do 
+      let(:user) { create(:user)}
+      before { sign_in(user)}
 
-    context 'valid params' do
-      let(:params) do
-        { id: client.id, client: { 
-                                  name: client2.name, 
-                                  email: client2.email,
-                                  address: client2.address,
-                                  telephone: client2.telephone
-                              } }
+      context 'valid params' do
+        let(:params) do
+          { id: client.id, client: { 
+                                    name: client2.name, 
+                                    email: client2.email,
+                                    address: client2.address,
+                                    telephone: client2.telephone
+                                } }
+        end
+  
+        it 'updates client' do
+          expect { subject }
+            .to change { client.reload.name }
+            .from(client.name)
+            .to(params[:client][:name])
+            .and change { client.reload.email }
+            .from(client.email)
+            .to(params[:client][:email])
+            .and change { client.reload.address }
+            .from(client.address)
+            .to(params[:client][:address])
+            .and change { client.reload.telephone }
+            .from(client.telephone)
+            .to(params[:client][:telephone])
+        end
+        
+        it 'have status ok ' do 
+          expect(response).to have_http_status(:ok)
+        end
       end
-
-      it 'updates client' do
-        expect { subject }
-          .to change { client.reload.name }
-          .from(client.name)
-          .to(params[:client][:name])
-          .and change { client.reload.email }
-          .from(client.email)
-          .to(params[:client][:email])
-          .and change { client.reload.address }
-          .from(client.address)
-          .to(params[:client][:address])
-          .and change { client.reload.telephone }
-          .from(client.telephone)
-          .to(params[:client][:telephone])
-      end
-      
-      it 'have status ok ' do 
-        expect(response).to have_http_status(:ok)
+  
+      context 'invalid params' do
+        let(:params) do
+          { id: client.id, client: { 
+              name: nil,
+              email: nil,
+              address: nil,
+              telephone: nil 
+           } }
+        end
+  
+        it 'does not update client' do
+          subject
+          expect(response).to have_http_status(405)
+        end
       end
     end
 
-    context 'invalid params' do
-      let(:params) do
-        { id: client.id, client: { 
-            name: nil,
-            email: nil,
-            address: nil,
-            telephone: nil 
-         } }
-      end
-
-      it 'does not update client' do
-        subject
-        expect(response).to have_http_status(405)
+    context 'when NOT user is logged in' do
+      context 'valid params' do
+        let(:params) do
+          { id: client.id, client: { 
+                                    name: client2.name, 
+                                    email: client2.email,
+                                    address: client2.address,
+                                    telephone: client2.telephone
+                                } }
+        end
+  
+        it 'does not updates any client parameter' do
+          expect { subject }.not_to change { client.reload.name }        
+          expect { subject }.not_to change { client.reload.email }
+          expect { subject }.not_to change { client.reload.address }
+          expect { subject }.not_to change { client.reload.telephone }
+        end
       end
     end
-    
   end
 
   describe 'DELETE destroy' do
