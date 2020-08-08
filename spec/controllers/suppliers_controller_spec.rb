@@ -1,28 +1,49 @@
 require 'rails_helper'
 
 RSpec.describe SuppliersController, type: :controller do
+  
   describe 'GET index' do
-    before { get :index }
+    context 'when user IS logged in' do
+      let(:user) { create(:user) }
+      before do
+        sign_in(user)
+        get :index
+      end
+      context 'and some suppliers are present' do
+        let!(:supplier) { create(:supplier) } 
 
-    context 'when some suppliers present' do
-      let!(:supplier) { create(:supplier) } 
+        it 'assigns @suppliers' do
+          expect(assigns(:suppliers)).to eq([supplier])
+        end
 
-      it 'assigns @suppliers' do
-        expect(assigns(:suppliers)).to eq([supplier])
+        it 'renders the index template' do
+          expect(response).to render_template(:index)
+        end
       end
 
-      it 'renders the index template' do
-        expect(response).to render_template(:index)
+      context 'and no suppliers are present' do
+        it 'assigns @suppliers' do
+          expect(assigns(:suppliers)).to eq([])
+        end
+
+        it 'renders the index template' do
+          expect(response).to render_template(:index)
+        end
       end
     end
 
-    context 'when no suppliers' do
-      it 'assigns @suppliers' do
-        expect(assigns(:suppliers)).to eq([])
+    context 'when NO user is logged in' do
+      before { get :index }
+      it 'does not render the index template' do
+        expect(response).not_to render_template(:index)
       end
 
-      it 'renders the index template' do
-        expect(response).to render_template(:index)
+      it do
+        expect(response).to have_http_status(302)
+      end
+
+      it 'redirect to login page' do
+        expect(subject).to redirect_to("/users/sign_in")
       end
     end
   end
