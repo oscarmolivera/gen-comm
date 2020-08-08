@@ -261,17 +261,29 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe 'DELETE destroy' do
     subject { delete :destroy, params: params, xhr: true }
-
     let!(:category) { create(:category) }
 
-    context 'valid params' do
-      let(:params) do
-        { id: category.id }
-      end
-
-      it 'deletes category' do
-        expect { subject }.to change(Category, :count).by(-1)
-      end 
+    let(:params) do
+      { id: category.id }
     end
+
+    context 'when user IS logged in' do
+      let(:user) { create(:user) }
+      before { sign_in(user) }
+      context 'and sends valid params' do 
+        it 'deletes category' do
+          expect { subject }.to change(Category, :count).by(-1)
+        end 
+      end
+    end
+
+    context 'when NO user is logged in' do
+       context 'and sends valid params' do 
+        it 'deletes category' do
+          expect { subject }.not_to change(Category, :count)
+        end 
+      end
+    end
+    
   end
 end 
