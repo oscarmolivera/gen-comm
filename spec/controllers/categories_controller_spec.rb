@@ -51,18 +51,41 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe 'GET new' do
 
-    before { get :new, xhr: true }
+    context 'when user IS logged in' do
+      let(:user) { create(:user) }
 
-    it 'assigns @category' do
-      expect(assigns(:category)).to be_a_new(Category)
+      before do
+        sign_in(user)
+        get :new, xhr: true
+      end
+
+      it 'assigns @category' do
+        expect(assigns(:category)).to be_a_new(Category)
+      end
+  
+      it 'renders the new template' do
+        expect(response).to render_template(:new)
+      end
+  
+      it do
+        expect(response).to have_http_status(200)
+      end
     end
+    
+    context 'when NO user is logged in' do 
+      before { get :new, xhr: true }
+      
+      it 'does not assign @category' do
+        expect(assigns(:category)).to eq(nil)
+      end
 
-    it 'renders the new template' do
-      expect(response).to render_template(:new)
-    end
+      it 'does not render the new template' do
+        expect(response).not_to render_template(:new)
+      end
 
-    it do
-      expect(response).to have_http_status(200)
+      it do
+        expect(response).to have_http_status(401)
+      end
     end
   end
 
