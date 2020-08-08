@@ -169,19 +169,37 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe 'GET edit' do
     subject { get :edit, params: params, xhr: true }
-    context 'when params are valid' do
-      let(:params) { { id: category.id } }
-
-      let!(:category) { create(:category) }
-
-      before { subject }
-
-      it 'assigns @category' do
-        expect(assigns(:category)).to eq(category)
+    context 'when user IS logged in' do
+      
+      let(:user) { create(:user) }
+      before { sign_in(user) } 
+      
+      context 'and params are valid' do
+        let!(:category) { create(:category) }
+        let(:params) { { id: category.id } }
+  
+        before { subject }
+  
+        it 'assigns @category' do
+          expect(assigns(:category)).to eq(category)
+        end
+  
+        it 'renders the edit template' do
+          expect(response).to render_template(:edit)
+        end
       end
-
-      it 'renders the edit template' do
-        expect(response).to render_template(:edit)
+    end
+    
+    context 'when NO user is logged in' do
+      let(:params) { { id: 1 } }
+      context 'and params are valid' do
+        it 'does not assigns @category' do
+          expect(assigns(:category)).to eq(nil)
+        end
+        it 'response code:Unauthorized' do
+          subject
+          expect(response).to have_http_status(401)
+        end
       end
     end
   end
