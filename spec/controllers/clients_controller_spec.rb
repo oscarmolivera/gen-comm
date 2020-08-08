@@ -160,20 +160,38 @@ RSpec.describe ClientsController, type: :controller do
   end
 
   describe 'GET edit' do
+    let!(:client) { create(:client) }
+    let(:params) { { id: client.id } }
     subject { get :edit, params: params, xhr: true }
-    context 'when params are valid' do
-      let(:params) { { id: client.id } }
 
-      let!(:client) { create(:client) }
-
-      before { subject }
-
-      it 'assigns @client' do
-        expect(assigns(:client)).to eq(client)
+    context 'when user IS logged in' do 
+      context 'and sends valid params' do
+        
+        let(:user) { create(:user) }
+        before do 
+          sign_in(user)
+          subject 
+        end
+  
+        it 'assigns @client' do
+          expect(assigns(:client)).to eq(client)
+        end
+  
+        it 'renders the edit template' do
+          expect(response).to render_template(:edit)
+        end
       end
+    end
 
-      it 'renders the edit template' do
-        expect(response).to render_template(:edit)
+    context 'when NO user is logged in' do 
+      context 'and sends valid params' do 
+        before { subject }
+        it 'does not assigns @client' do
+          expect(assigns(:client)).to eq(nil)
+        end
+        it 'response code:Unauthorized' do
+          expect(response).to have_http_status(401)
+        end
       end
     end
   end
