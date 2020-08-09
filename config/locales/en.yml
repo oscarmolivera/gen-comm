@@ -34,7 +34,9 @@ en:
         clients: Clients
         suppliers: Suppliers
     footer:
-      site: Copyright © Gen Comm  2020     
+      site: Copyright © Gen Comm  2020
+    topbar:
+      logout: Logout       
   categories:
     index:
       category_title: Categories
