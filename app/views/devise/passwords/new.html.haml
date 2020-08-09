@@ -1,9 +1,24 @@
-%h1= t('.forgot_your_password')
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = bootstrap_devise_error_messages!
-  .form-group
-    = f.label :email
-    = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
-  .form-group
-    = f.submit t('.send_me_reset_password_instructions'), class: 'btn btn-primary'
-= render 'devise/shared/links'
+.col-lg-6.d-none.d-lg-block.bg-password-image
+.col-lg-6
+  .p-5
+    .text-center
+      %h1.h4.text-gray-900.mb-4 GEN COMM APPLICATION
+    %ul.navbar-nav.ml-auto
+      .row
+        .col-lg-6
+          .p-0
+            %li.px-4{class:current_lang?('en')}
+              = link_to "ENGLISH", new_user_password_path(locale: :en), class: 'nav-link'
+        .col-lg-6
+          .p-0
+            %li.px-4{class:current_lang?('es')}
+              = link_to "ESPAÑOL", new_user_password_path(locale: :es), class: 'nav-link'
+    .my-5
+      %h4= t('.forgot_your_password')
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        .form-group.my-5
+          = f.label :email
+          = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control form-control-user'
+        .form-group
+          = f.submit t('.send_me_reset_password_instructions'), class: 'btn btn-success '
+      = render 'devise/shared/links'

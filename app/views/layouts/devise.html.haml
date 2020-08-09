@@ -23,19 +23,6 @@
             .card-body.p-0
               / Nested Row within Card Body
               .row
-                .col-lg-6.d-none.d-lg-block.bg-login-image
-                .col-lg-6
-                  .p-5
-                    .text-center
-                      %h1.h4.text-gray-900.mb-4 GEN COMM APPLICATION
-                      %ul.navbar-nav.ml-auto
-                        .row
-                          .col-lg-6
-                            .p-1
-                              %li{class:current_lang?('en')}
-                                = link_to "ENGLISH", new_user_session_path(locale: :en), class: 'nav-link'
-                          .col-lg-6
-                            .p-1
-                              %li{class:current_lang?('es')}
-                                = link_to "ESPAÑOL", new_user_session_path(locale: :es), class: 'nav-link'      
-                    =yield
+                =yield
+                
+                    

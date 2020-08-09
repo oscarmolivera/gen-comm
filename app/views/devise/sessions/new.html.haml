@@ -1,24 +1,40 @@
-%h1= t('.sign_in')
-= form_for(resource, as: resource_name, url: session_path(resource_name), html_options: { class: 'user'}) do |f|
-  .form-group
-    = f.email_field :email, autocomplete: 'email', class: 'form-control form-control-user', placeholder: t('.placeholder.email')
-  .form-group
-    = f.password_field :password, autocomplete: 'current-password', class: 'form-control form-control-user', placeholder: t('.placeholder.password')
-  - if devise_mapping.rememberable?
-    .form-group
-      .custom-control.custom-checkbox.small
-        = f.check_box :remember_me, class: 'form-check-input'
-        = f.label :remember_me, class: 'my-2 px-2' do
-          = resource.class.human_attribute_name('remember_me')
-  .form-group
-    = f.submit  t('.sign_in'), class: 'btn btn-primary'
-= render 'devise/shared/links'
-%a.btn.btn-google.btn-user.btn-block{:href => '#'}
-  %i.fab.fa-google.fa-sm.fa-fw.mr-2
-  = t('.login_google')
-%a.btn.btn-facebook.btn-user.btn-block{:href => '#'}
-  %i.fab.fa-facebook-f.fa-sm.fa-fw.mr-2
-  = t('.login_facebook')
-%a.btn.btn-github.btn-user.btn-block{:href => '#'}
-  %i.fab.fa-github.fa-sm.fa-fw.mr-2
-  = t('.login_github')
+.col-lg-6.d-none.d-lg-block.bg-login-image
+.col-lg-6
+  .p-5
+    .text-center
+      %h1.h4.text-gray-900.mb-4 GEN COMM APPLICATION
+    %ul.navbar-nav.ml-auto
+      .row
+        .col-lg-6
+          .p-0
+            %li.px-4{class:current_lang?('en')}
+              = link_to "ENGLISH", new_user_session_path(locale: :en), class: 'nav-link'
+        .col-lg-6
+          .p-0
+            %li.px-4{class:current_lang?('es')}
+              = link_to "ESPAÑOL", new_user_session_path(locale: :es), class: 'nav-link'
+    .my-2                
+    %h1= t('.sign_in')
+    = form_for(resource, as: resource_name, url: session_path(resource_name), html_options: { class: 'user'}) do |f|
+      .form-group
+        = f.email_field :email, autocomplete: 'email', class: 'form-control form-control-user', placeholder: t('.placeholder.email')
+      .form-group
+        = f.password_field :password, autocomplete: 'current-password', class: 'form-control form-control-user', placeholder: t('.placeholder.password')
+      - if devise_mapping.rememberable?
+        .form-group
+          .custom-control.custom-checkbox.small
+            = f.check_box :remember_me, class: 'form-check-input'
+            = f.label :remember_me, class: 'my-2 px-2' do
+              = resource.class.human_attribute_name('remember_me')
+      .form-group
+        = f.submit  t('.sign_in'), class: 'btn btn-primary'
+    = render 'devise/shared/links'
+    %a.btn.btn-google.btn-user.btn-block{:href => '#'}
+      %i.fab.fa-google.fa-sm.fa-fw.mr-2
+      = t('.login_google')
+    %a.btn.btn-facebook.btn-user.btn-block{:href => '#'}
+      %i.fab.fa-facebook-f.fa-sm.fa-fw.mr-2
+      = t('.login_facebook')
+    %a.btn.btn-github.btn-user.btn-block{:href => '#'}
+      %i.fab.fa-github.fa-sm.fa-fw.mr-2
+      = t('.login_github')
