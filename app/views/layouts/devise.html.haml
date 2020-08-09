@@ -9,12 +9,13 @@
     %meta{:content => 'width=device-width, initial-scale=1, shrink-to-fit=no', :name => 'viewport'}/
     %meta{:content => 'SB Admin2_Dashboard', :name => 'description'}/
     %meta{:content => 'Oscar M. Olivera', :name => 'author'}/
-    %title SB Admin 2 - Dashboard
+    %title GC-APP
 
     = stylesheet_pack_tag 'application'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body.bg-gradient-primary
     .container
+      = toastr_flash_messages
       / Outer Row
       .row.justify-content-center
         .col-xl-10.col-lg-12.col-md-9
@@ -26,5 +27,15 @@
                 .col-lg-6
                   .p-5
                     .text-center
-                      %h1.h4.text-gray-900.mb-4 Welcome Back!
+                      %h1.h4.text-gray-900.mb-4 GEN COMM APPLICATION
+                      %ul.navbar-nav.ml-auto
+                        .row
+                          .col-lg-6
+                            .p-1
+                              %li{class:current_lang?('en')}
+                                = link_to "ENGLISH", new_user_session_path(locale: :en), class: 'nav-link'
+                          .col-lg-6
+                            .p-1
+                              %li{class:current_lang?('es')}
+                                = link_to "ESPAÑOL", new_user_session_path(locale: :es), class: 'nav-link'      
                     =yield
