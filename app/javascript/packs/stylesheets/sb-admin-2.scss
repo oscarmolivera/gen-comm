@@ -10909,6 +10909,18 @@ form.user .btn-user {
   box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
 }
 
+.btn-github {
+  color: #fff;
+  background-color: #23252b;
+  border-color: #fff;
+}
+
+.btn-github:hover {
+  color: #fff;
+  background-color: #32363f;
+  border-color: #e6e6e6;
+}
+
 .error {
   color: #5a5c69;
   font-size: 7rem;
