@@ -289,4 +289,29 @@ RSpec.describe ProductsController, type: :controller do
       end
     end   
   end
+
+  describe 'DELETE destroy' do
+    subject { delete :destroy, params: params, xhr: true }
+    let!(:product) { create(:product) }
+    let(:params) do
+      { id: product.id }
+    end
+    context 'when user IS logged in' do 
+      before { sign_in(user) }
+      context 'valid params' do
+        it 'deletes category' do
+          expect { subject }.to change(Product, :count).by(-1)
+        end 
+      end
+    end
+
+    context 'when NO user is logged in' do
+      context 'and sends valid params' do 
+       it 'does not deletes the product' do
+         expect { subject }.not_to change(Product, :count)
+       end 
+     end
+   end
+    
+  end
 end
