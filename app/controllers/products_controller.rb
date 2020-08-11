@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: %i[create]
-  before_action :set_product, only: %i[edit]
-  before_action :set_category, only: %i[edit]
-  before_action :set_supplier, only: %i[edit]
+  skip_before_action :verify_authenticity_token, only: %i[create update]
+  before_action :set_product, only: %i[edit update]
+  before_action :set_category, only: %i[edit update]
+  before_action :set_supplier, only: %i[edit update]
   def index
     @products = Product.all
   end
@@ -24,6 +24,16 @@ class ProductsController < ApplicationController
 
   def edit; end
 
+  def update
+    respond_to do |format|
+      if @product.update(product_params)
+        format.js
+      else
+        format.js { render :new, status: :method_not_allowed}
+      end
+    end
+  end
+  
   private
 
   def product_params
