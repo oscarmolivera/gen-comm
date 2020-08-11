@@ -156,5 +156,42 @@ RSpec.describe ProductsController, type: :controller do
       end
     end
   end
+
+  describe 'GET edit' do
+    let(:category) { create(:category) }
+    let(:supplier) { create(:supplier) }
+    let!(:product) { create(:product, category: category, supplier: supplier) }
+    let(:params) { { id: product.id } }
+    subject { get :edit, params: params, xhr: true }
+
+    context 'when user IS logged in,' do 
+      context 'and sends VALID params' do
+        
+        before do 
+          sign_in(user)
+          subject 
+        end
+  
+        it 'assigns @supplier' do
+          expect(assigns(:product)).to eq(product)
+        end
+  
+        it 'renders the edit template' do
+          expect(response).to render_template(:edit)
+        end
+      end
+    end
+
+    context 'when NO user is logged in' do 
+      context 'and sends valid params' do 
+        before { subject }
+        it 'does not assigns @product' do
+          expect(assigns(:product)).to eq(nil)
+        end
+        it 'response code:Unauthorized' do
+          expect(response).to have_http_status(401)
+        end
+      end
+    end
+  end
 end
- 
