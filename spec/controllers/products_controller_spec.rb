@@ -194,4 +194,99 @@ RSpec.describe ProductsController, type: :controller do
       end
     end
   end
+
+  describe 'PUT update' do
+    subject { put :update, params: params, xhr: true }
+
+    let(:category) { create(:category) }
+    let(:supplier) { create(:supplier) }
+    let!(:product) { create(:product) }
+    let( :product2) do
+      build(
+            :product, 
+            category: category, 
+            supplier: supplier
+          )
+    end 
+
+    let(:params) do
+      { id: product.id, product: { 
+                                  name: product2.name, 
+                                  description: product2.description, 
+                                  existence: product2.existence, 
+                                  price: product2.price, 
+                                  image: product2.image,
+                                  category_id: product2.category_id, 
+                                  supplier_id: product2.supplier_id
+                                  } 
+      }
+    end
+    
+    context 'when user IS logged in' do 
+      before { sign_in(user)}
+
+      context 'valid params' do
+  
+        it 'updates product' do
+          expect { subject }
+            .to change { product.reload.name }
+            .from(product.name)
+            .to(params[:product][:name])
+            .and change { product.reload.description }
+            .from(product.description)
+            .to(params[:product][:description])
+            .and change { product.reload.existence }
+            .from(product.existence)
+            .to(params[:product][:existence])
+            .and change { product.reload.price }
+            .from(product.price)
+            .to(params[:product][:price])
+            .and change { product.reload.category_id }
+            .from(product.category_id)
+            .to(params[:product][:category_id])
+            .and change { product.reload.supplier_id }
+            .from(product.supplier_id)
+            .to(params[:product][:supplier_id])
+        end
+        
+        it 'have status ok ' do 
+          expect(response).to have_http_status(:ok)
+        end
+      end
+  
+      context 'invalid params' do
+        let(:params) do
+          { id: product.id, product: { 
+                                      name: nil, 
+                                      description: nil, 
+                                      existence: nil, 
+                                      price: nil, 
+                                      image: nil, 
+                                      category_id: nil, 
+                                      supplier_id: nil
+                                      } 
+          }
+        end
+  
+        it 'response status Method not Allowed' do
+          subject
+          expect(response).to have_http_status(405)
+        end
+      end
+    end 
+
+    context 'when NOT user is logged in' do
+      context 'valid params' do 
+        it 'does not updates any client parameter' do
+          expect { subject }.not_to change { product.reload.name }        
+          expect { subject }.not_to change { product.reload.description }
+          expect { subject }.not_to change { product.reload.existence }
+          expect { subject }.not_to change { product.reload.price }
+          expect { subject }.not_to change { product.reload.image }
+          expect { subject }.not_to change { product.reload.category_id }
+          expect { subject }.not_to change { product.reload.supplier_id }
+        end
+      end
+    end   
+  end
 end
