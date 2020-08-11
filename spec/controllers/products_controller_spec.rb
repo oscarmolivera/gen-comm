@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ProductsController, type: :controller do
+  let(:user) { create(:user) }
+
   describe 'GET #Index' do
     context 'when user IS logged in' do
-      let(:user) { create(:user) }
       before do
         sign_in(user)
         get :index
@@ -52,7 +53,6 @@ RSpec.describe ProductsController, type: :controller do
     subject {get :new, xhr: true}
     context 'when user IS logged in' do
       let(:product) { create(:product) }
-      let(:user) { create(:user) }
       before do
         sign_in(user)
         subject
@@ -82,6 +82,77 @@ RSpec.describe ProductsController, type: :controller do
 
       it 'response code:Unauthorized' do
         expect(response).to have_http_status(401)
+      end
+    end
+  end
+
+  describe 'Post #Create' do
+    subject { post :create, params: params, xhr: true }
+    let(:product) { build(:product) }
+    let(:supplier) { create(:supplier) }
+    let(:category) { create(:category) }
+
+    let(:params) do
+      { product:{ name: product.name,
+                  description: product.description,
+                  existence: product.existence,
+                  price: product.price,
+                  image: product.image,
+                  category_id: category.id,
+                  supplier_id: supplier.id
+                }
+      }
+    end
+
+    context 'when user IS logged in' do
+      before { sign_in(user) }
+      
+      context 'and sends VALID params' do
+
+        it 'creates new supplier' do
+          expect { subject }.to change(Product, :count).by(1)
+        end
+  
+        it 'method create is success' do
+          subject
+          expect(response).to have_http_status(:success)
+        end
+      end
+      
+      context 'and sends INVALID params' do
+        let(:params) do
+          { product:{ name: nil,
+                      description: nil,
+                      existence: nil,
+                      price: nil,
+                      image: nil,
+                      category_id: nil,
+                      supplier_id: nil
+                    }
+          }
+        end
+
+        it 'does not create new product' do
+          expect { subject }.not_to change(Product, :count)
+        end
+  
+        it 'response code:Unauthorized' do
+          subject
+          expect(response).to have_http_status(401)
+        end
+      end
+    end
+
+    context 'when NO user is logged in' do
+      context 'and are valid params' do
+        it 'does not create new product' do
+          expect { subject }.not_to change(Product, :count)
+        end
+  
+        it 'response code:Unauthorized' do
+          subject
+          expect(response).to have_http_status(401)
+        end
       end
     end
   end
