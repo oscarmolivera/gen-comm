@@ -33,6 +33,7 @@ en:
         categories: Categories
         clients: Clients
         suppliers: Suppliers
+        products: Products
     footer:
       site: Copyright © Gen Comm  2020
     topbar:
