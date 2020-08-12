@@ -23,7 +23,15 @@ en:
       delete: Supplier deleted!
       edit: Edit Supplier
       new: New Supplier
-      updated: Supplier updated!  
+      updated: Supplier updated!
+    products:
+      confirm: Confirm!
+      alert: Caution!
+      created: Product created!
+      delete: Product deleted!
+      edit: Edit Product
+      new: New Product
+      updated: Product updated!    
   shared:
     sidebar:
       menu:
