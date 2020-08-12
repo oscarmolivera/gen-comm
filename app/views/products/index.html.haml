@@ -1,0 +1,50 @@
+%h1.h3.mb-2.text-gray-800
+  = t('.title')
+%p.mb-4
+  = t('.desc')
+
+.card.shadow.md-4
+  .card-header.py-3
+    %h6.m-0.font-weight-bold.text-primary
+      = t('.list')
+  .px-4.pt-2
+    =link_to  new_product_path, id: 'add-new-product', class:'btn btn-success', remote: true do
+      %span.fas.fa-plus-square    
+      = t('.new_button')
+  .card-body
+    .table-responsive
+      %table#tablaProducts.table.table-border{:width => "100%"}
+        %thead
+          %tr
+            %th=t('.table.name')
+            %th=t('.table.description')
+            %th=t('.table.existence')
+            %th=t('.table.price')
+            %th=t('.table.image')
+            %th=t('.table.category')
+            %th=t('.table.supplier')
+            %th=t('.table.actions')
+        %tbody
+          - @products.each do |product|
+            %tr{:id => "product_#{product.id}"}
+              %td= product.name
+              %td= product.description
+              %td= product.existence
+              %td= product.price
+              %td= product.image
+              %td= product.category_id
+              %td= product.supplier_id
+              %td
+                = link_to t('.table.edit'), edit_product_path(product), class: 'btn btn-xs btn-info', remote: true
+                = link_to t('.table.delete'), product, class: 'btn btn-xs btn-danger', remote: true, method: :delete, data: { confirm: t('.table.confirm_message',name: product.name)}
+
+= render 'modal'
+
+:javascript
+  $( document ).ready( function(){
+    $('#tablaProducts').DataTable({
+       "iDisplayLength": 5,
+       "lengthMenu": [[5, 10, 15, 20, 25, 50, -1], [5, 10, 15, 20, 25, 50, "All"]]
+    });
+  });
+
