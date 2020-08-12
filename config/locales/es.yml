@@ -23,7 +23,15 @@ es:
       delete: Proveedor eliminado con exíto!
       edit: Editar Proveedor
       new: Nuevo Proveedor
-      updated: Proveedor actualizado con exíto!  
+      updated: Proveedor actualizado con exíto!
+    products:
+      confirm: Confirmado!
+      alert: Advertencia!
+      created: Producto creado con exíto!
+      delete: Prductor eliminado con exíto!
+      edit: Editar Producto
+      new: Nuevo Producto
+      updated: Producto actualizado con exíto!   
   shared:
     sidebar:
       menu:
@@ -147,5 +155,56 @@ es:
       submit:
         create: Crear Proveedor  
         edit: Actualizar Proveedor
+    modal:
+      close: Cerrar
+  products:
+    index:
+      title: Productos
+      desc: Crear, editar o desactivar productos de la aplicacion.
+      list: Listado de Productos Activos
+      new_button: Nuevo Producto
+      table:
+        name: Nombre
+        description: Descripción
+        existence: Existencia
+        price: Precio
+        image: Imagen
+        category: Categoría
+        supplier: Proveedor
+        actions: Acciones
+        edit: Editar
+        delete: Borrar
+        confirm_message: "¿Desea Borrar el Producto: %{name}?"
+    create:
+      toastr:
+        edit: Editar
+        delete: Borrar
+    update:
+      toastr:
+        edit: Editar
+        delete: Borrar    
+    form:
+      title: Datos del Producto
+      name: "Nombre del Producto:"
+      description: "Descripción del Producto:" 
+      existence: "Existencia:" 
+      price: "Precio del Producto:" 
+      image: "Imagen:" 
+      category: "Categoría Producto:" 
+      supplier: "Proveedor Producto:" 
+      placeholder:
+        name: Ingrese nombre...
+        description: Describa el producto
+        existence: Cantidad en stock...
+        price: Precio de venta
+        image: Imagen 
+        category: Categoría...
+        supplier: Proveedor...
+      select:
+        category: Seleccione Categoría  
+        supplier: Seleccione Proveedor  
+      submit:
+        create: Crear Producto  
+        edit: Actualizar Producto
     modal:
       close: Cerrar      

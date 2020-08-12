@@ -151,4 +151,53 @@ en:
         create: Create Supplier
         edit: Update Supplier
     modal:
+      close: Close
+  products:
+    index:
+      title: Products
+      desc: Create, edit o delete supplier_list from the application.
+      list: Active Products List
+      new_button: New Products
+      table:
+        name: Products Name
+        description: Description
+        existence: Existence
+        price: Price
+        image: Image
+        category: Category
+        supplier: Supplier
+        actions: Accions
+        edit: Edit
+        delete: Delete
+        confirm_message: "¿Do you wish to delete this Product: %{name}?"
+    create:
+      toastr:
+        edit: Edit
+        delete: Delete
+    update:
+      toastr:
+        edit: Edit
+        delete: Delete   
+    form:
+      title: Product Info
+      name: "Product Name:"
+      description: Description
+      existence: Existence
+      price: Price
+      image: Image
+      category: Category
+      supplier: Supplier
+      placeholder:
+        name: "Insert Name..."
+        description: Description
+        existence: Initial Stock
+        price: Sales price
+        image: Image
+      select:
+        category: Select Category
+        supplier: Select Supplier
+      submit:
+        create: Create Product
+        edit: Update Product
+    modal:
       close: Close      
