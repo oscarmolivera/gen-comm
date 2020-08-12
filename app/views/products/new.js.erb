@@ -1,0 +1,8 @@
+// Add the dialog title
+$('#modal-products-title').html("<%= t('toastr.products.new') %>");
+
+// Render the new-form
+$('#modal-body-products').html('<%= j render("form") %>');
+
+// Show dynamic dialog
+$('#modalProducts').modal("show");

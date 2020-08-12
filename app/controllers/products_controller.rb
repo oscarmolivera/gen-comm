@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[create update destroy]
   before_action :set_product, only: %i[edit update destroy]
-  before_action :set_category, only: %i[edit update destroy]
-  before_action :set_supplier, only: %i[edit update destroy]
+  before_action :set_category, only: %i[new edit update destroy]
+  before_action :set_supplier, only: %i[new edit update destroy]
   def index
     @products = Product.all
   end
@@ -50,10 +50,10 @@ class ProductsController < ApplicationController
   end
 
   def set_category
-    @category = Category.all
+    @categories = Category.all
   end
 
   def set_supplier
-    @supplier = Supplier.all
+    @suppliers = Supplier.all
   end
 end
