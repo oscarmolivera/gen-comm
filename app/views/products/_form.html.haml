@@ -1,0 +1,56 @@
+= form_for @product, { remote: true, multiple: true} do |f|
+  .form-group
+    %h4.control-label
+      /='Datos Suppliers'
+      = t('.title')
+  %div{:class => "item form-group#{@product.errors[:name].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :name, t('.name')
+    .input-group
+      = f.text_field :name, class: 'form-control', placeholder: t('.placeholder.name') 
+      - if @product.errors[:name].any?
+        %p.categories-errors
+          = @product.errors[:name].to_s[/\w([^"]*)/]
+  %div{:class => "item form-group#{@product.errors[:description].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :description, t('.description')
+    .input-group
+      = f.text_field :description, class: 'form-control', placeholder: t('.placeholder.description') 
+      - if @product.errors[:description].any?
+        %p.categories-errors
+          = @product.errors[:description].to_s[/\w([^"]*)/]
+  %div{:class => "item form-group#{@product.errors[:existence].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :existence, t('.existence')
+    .input-group
+      = f.number_field :existence, min: 0, class: 'form-control', placeholder: t('.placeholder.existence') 
+      - if @product.errors[:existence].any?
+        %p.categories-errors
+          = @product.errors[:existence].to_s[/\w([^"]*)/]
+  %div{:class => "item form-group#{@product.errors[:price].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :price, t('.price')
+    .input-group
+      = f.number_field :price, value: number_to_currency(f.object.price.to_f, delimiter: '', unit: ''), step: :any, class: 'form-control', placeholder: t('.placeholder.price') 
+      - if @product.errors[:price].any?
+        %p.categories-errors
+          = @product.errors[:price].to_s[/\w([^"]*)/]
+  %div{:class => "item form-group#{@product.errors[:price].any? ? 'has-error has-feedback' : ''}"}
+    = image_tag(@product.image.url, size: '150x150') if @product.image.present?
+    .input-group
+      = f.file_field :image, {class: 'form-control'}
+      - if @product.errors[:image].any?
+        %p.categories-errors
+          = @product.errors[:image].to_s[/\w([^"]*)/]
+  %div{:class => "item form-group#{@product.errors[:category].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :category, t('.category')
+    .input-group
+      = collection_select(:product, :category_id, @categories, :id, :name, { prompt: t('.select.category') }, { class: 'form-control' })
+      - if @product.errors[:category].any?
+        %p.categories-errors
+          = @product.errors[:category].to_s[/\w([^"]*)/]
+  %div{:class => "item form-group#{@product.errors[:supplier].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :supplier, t('.supplier')
+    .input-group
+      = collection_select(:product, :supplier_id, @suppliers, :id, :name, { prompt: t('.select.supplier') }, { class: 'form-control' })
+      - if @product.errors[:supplier].any?
+        %p.categories-errors
+          = @product.errors[:supplier].to_s[/\w([^"]*)/]          
+  .actions.col-md-9.col-sm-9.col-xs12.col-md-offset-3
+    = f.submit @product.new_record? ? t('.submit.create') : t('.submit.edit'), class: 'btn btn-success'

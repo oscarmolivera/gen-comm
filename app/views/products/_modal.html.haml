@@ -1,0 +1,12 @@
+/ Modal Products
+.modal.fade{"aria-labelledby" => "modalProductsLabel", :role => "dialog", :tabindex => "-1", id: "modalProducts"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#modal-products-title.modal-title
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      #modal-body-products.modal-body
+      #modal-footer-products.modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}
+          = t('.close')
