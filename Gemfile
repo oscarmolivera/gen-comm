@@ -12,18 +12,26 @@ ruby '2.6.2'
 
 # Reduces boot times through caching; required in config/boot.rb.
 gem 'bootsnap', '>= 1.4.2', require: false
+# Upload files in your Ruby applications
+gem 'carrierwave', '~> 2.1'
 # Flexible authentication solution for Rails with Warden.
 gem 'devise', '~> 4.7', '>= 4.7.1'
 # Bootstrap views for Devise with I18n support.
 gem 'devise-bootstrap-views', '~> 1.1'
 # Slugging and permalink plugins for Active Record.
 gem 'friendly_id', '~> 5.3'
+# 'FOG' or standalone provider for Google Cloud in applications.
+gem 'fog-google'
+# Client for accessing Google APIs
+gem "google-api-client", "> 0.8.5", "< 0.9"
 # HTML Abstraction Markup Language.
 gem 'haml-rails', '~> 2.0'
 ## High-level wrapper for processing images for the web with ImageMagick or libvips.
 ## gem 'image_processing', '~> 1.10', '>= 1.10.3'
 # Build JSON APIs with ease.
 gem 'jbuilder', '~> 2.7'
+#MIME content type definitions
+gem 'mime-types'
 # Handle multiple models in a single form.
 gem 'nested_form', '~> 0.3.2'
 # Agnostic pagination in plain ruby
