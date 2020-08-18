@@ -4,5 +4,5 @@ class Product < ApplicationRecord
   has_many :sale_details
   has_many :warehouse_records
 
-  mount_uploader :image, ProductImageUploader
+  has_one_attached :picture
 end
