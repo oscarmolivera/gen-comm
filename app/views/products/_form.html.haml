@@ -3,14 +3,14 @@
     %h4.control-label
       /='Datos Suppliers'
       = t('.title')
-  %div{:class => "item form-group#{@product.errors[:image].any? ? 'has-error has-feedback' : ''}"}
-    = f.label :name, t('.image') 
-    = image_tag(@product.image.url, size: '150x150') if @product.image.present?
+  %div{:class => "item form-group#{@product.errors[:picture].any? ? 'has-error has-feedback' : ''}"}
+    = f.label :picture, t('.picture') 
+    = image_tag(@product.picture, size: '150x150') if @product.picture.present?
     .input-group
-      = f.file_field :image, {class: 'form-control'}
-      - if @product.errors[:image].any?
+      = f.file_field :picture, {class: 'form-control'}
+      - if @product.errors[:picture].any?
         %p.categories-errors
-          = @product.errors[:image].to_s[/\w([^"]*)/]      
+          = @product.errors[:picture].to_s[/\w([^"]*)/]      
   %div{:class => "item form-group#{@product.errors[:name].any? ? 'has-error has-feedback' : ''}"}
     = f.label :name, t('.name')
     .input-group
