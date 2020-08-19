@@ -5,4 +5,9 @@ class Product < ApplicationRecord
   has_many :warehouse_records
 
   has_one_attached :picture
+
+  # If no picture is stored for product, show a default one.
+  def show_picture
+    picture.present? ? picture : 'no_image_available.svg'
+  end
 end
