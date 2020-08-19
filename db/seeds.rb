@@ -19,18 +19,28 @@ puts 'Ederson TestUser!'
 
 12.times do
   Category.create!(
-    name:  Faker::Lorem.word,
+    name: Faker::Lorem.word,
     description: Faker::Lorem.sentence(word_count: 3, supplemental: true, random_words_to_add: 4)
   )
 end
 puts '12 Dummy Categories created!'
 
+5.times do
+  Supplier.create!(
+    name: Faker::Company.name,
+    email: Faker::Internet.email,
+    address: Faker::Address.full_address,
+    telephone: Faker::PhoneNumber.phone_number_with_country_code,
+    photo: Faker::LoremPixel.image(secure: false)
+  )
+end
+puts '5 Dummy Suppliers created!'
 8.times do
   Client.create!(
-    name:  Faker::Name.name_with_middle,
-    email:  Faker::Internet.email, 
-    address:  Faker::Address.full_address,
-    telephone:  Faker::PhoneNumber.phone_number_with_country_code
+    name: Faker::Name.name_with_middle,
+    email: Faker::Internet.email, 
+    address: Faker::Address.full_address,
+    telephone: Faker::PhoneNumber.phone_number_with_country_code
   )
 end
 puts '8 Dummy Clients created!'
