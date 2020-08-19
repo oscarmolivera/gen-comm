@@ -7,8 +7,10 @@ class Product < ApplicationRecord
   has_one_attached :picture
 
   # If no picture is stored for product, show a default one.
-  def show_picture
-    picture.present? ? picture : 'no_image_available.svg'
+  # One return for each locale.
+  def show_picture(locale)
+    return picture.present? ? picture : 'no_image_available.svg' if locale.to_s == 'en'
+    return picture.present? ? picture : 'imagen-no-disponible.svg' if locale.to_s == 'es'
   end
 
   # If no category is associated with the product, send a
