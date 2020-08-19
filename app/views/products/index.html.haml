@@ -32,8 +32,8 @@
               %td= product.description
               %td= product.existence
               %td= product.price
-              %td= product.category.name
-              %td= product.supplier.name
+              %td= product.category_name
+              %td= product.supplier_name
               %td
                 = link_to t('.table.edit'), edit_product_path(product), class: 'btn btn-xs btn-info', remote: true
                 = link_to t('.table.delete'), product, class: 'btn btn-xs btn-danger', remote: true, method: :delete, data: { confirm: t('.table.confirm_message',name: product.name)}
