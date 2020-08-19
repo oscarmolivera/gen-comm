@@ -10,4 +10,16 @@ class Product < ApplicationRecord
   def show_picture
     picture.present? ? picture : 'no_image_available.svg'
   end
+
+  # If no category is associated with the product, send a
+  # simple string line, else send the category name.
+  def category_name
+    category.present? ? category.name : t('.no_category')
+  end
+
+  # If no supplier is associated with the product, send a
+  # simple string line, else send the supplier name.
+  def supplier_name
+    supplier.present? ? supplier.name : t('.no_supplier')
+  end
 end
