@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   before_action :set_category, only: %i[new edit update destroy]
   before_action :set_supplier, only: %i[new edit update destroy]
   def index
+    @locale = params[:locale]
     @products = Product.all
   end
 
