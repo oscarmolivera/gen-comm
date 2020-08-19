@@ -19,19 +19,19 @@ es:
     suppliers:
       confirm: Confirmado!
       alert: Advertencia!
-      created: Proveedor creado con exíto!
-      delete: Proveedor eliminado con exíto!
+      created: Proveedor creado con éxito!
+      delete: Proveedor eliminado con éxito!
       edit: Editar Proveedor
       new: Nuevo Proveedor
-      updated: Proveedor actualizado con exíto!
+      updated: Proveedor actualizado con éxito!
     products:
       confirm: Confirmado!
       alert: Advertencia!
-      created: Producto creado con exíto!
-      delete: Prductor eliminado con exíto!
+      created: Producto creado con éxito!
+      delete: Prducto eliminado con éxito!
       edit: Editar Producto
       new: Nuevo Producto
-      updated: Producto actualizado con exíto!   
+      updated: Producto actualizado con éxito!   
   shared:
     sidebar:
       menu:
