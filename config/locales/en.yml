@@ -44,8 +44,11 @@ en:
         products: Products
     footer:
       site: Copyright © Gen Comm  2020
-    topbar:
-      logout: Logout       
+    topbar: 
+      logout: Logout 
+    models:
+      no_category : No Category Asociated
+      no_supplier : No supplier Asociated
   categories:
     index:
       category_title: Categories

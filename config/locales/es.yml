@@ -45,7 +45,10 @@ es:
     footer:
       site: Copyright © Gen Comm  2020
     topbar:
-      logout: Salir      
+      logout: Salir
+    models:
+      no_category : Sin Categoría Asociada
+      no_supplier : Sin Proveedor Asociada
   categories:
     index:
       category_title: Categorias

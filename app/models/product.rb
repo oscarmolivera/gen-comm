@@ -14,12 +14,12 @@ class Product < ApplicationRecord
   # If no category is associated with the product, send a
   # simple string line, else send the category name.
   def category_name
-    category.present? ? category.name : t('.no_category')
+    category.present? ? category.name : I18n.t('shared.models.no_category')
   end
 
   # If no supplier is associated with the product, send a
   # simple string line, else send the supplier name.
   def supplier_name
-    supplier.present? ? supplier.name : t('.no_supplier')
+    supplier.present? ? supplier.name : I18n.t('shared.models.no_supplier')
   end
 end
