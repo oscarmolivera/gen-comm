@@ -1,0 +1,26 @@
+// Close the modal
+$('#modalProducts').modal('toggle');
+
+toastr.success(
+  "<%= t('toastr.products.updated') %>", 
+  "<%= t('toastr.products.confirm') %>", 
+  {closeButton:true, progressBar: true}
+);
+
+// Add via Ajax the new item created in a rowtable from the view
+// without asking the server again nor refreshing the page.
+$('#product_<%= @product.id %>').replaceWith(
+  '<tr id="product_<%= @product.id %>" >' + 
+    '<td><%= image_tag(@product.picture, size: "50x50", class: "rounded-circle") if @product.picture.present?%></td>' +
+    '<td><%= @product.name %></td>' +
+    '<td><%= @product.description %></td>' +
+    '<td><%= @product.existence %></td>' +
+    '<td><%= number_to_currency(@product.price, unit: "$", separator: ",", delimiter: "", precision: 2) %></td>' +
+    '<td><%= @product.category_name %></td>' +
+    '<td><%= @product.supplier_name %></td>' +
+    '<td>' +
+      '<%= link_to t(".toastr.edit"), edit_product_path(@product), class: "btn btn-xs btn-info", remote: true %>' +
+      '<%= link_to t(".toastr.delete"), @product, class: "btn btn-xs btn-danger", remote: true, method: :delete, data: { confirm: "¿Desea Borrar el Proveedor: #{@product.name}?"} %>' +
+    '</td>'+ 
+  '</tr>'
+);
