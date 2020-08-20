@@ -1,0 +1,15 @@
+// Open the dialog title
+//$('#modal-categories-title').html("Editar Categoria");
+$('#modal-products-title').html("<%= t('toastr.products.edit') %>");
+
+// Render the edit-form
+$('#modal-body-products').html('<%= j render("form") %>');
+
+// Show dynamic dialog
+$('#modalProducts').modal("show");
+
+// Set focus to the first element
+$('#modalProducts').on('shown.bs.modal', function(){
+  $('#product_name').focus();
+}
+);	
