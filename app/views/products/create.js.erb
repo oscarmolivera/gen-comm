@@ -15,7 +15,7 @@ $('#tablaProducts').append(
     '<td><%= @product.name %></td>' +
     '<td><%= @product.description %></td>' +
     '<td><%= @product.existence %></td>' +
-    '<td><%= @product.price %></td>' +
+    '<td><%= number_to_currency(@product.price, unit: "$", separator: ",", delimiter: "", precision: 2) %></td>' +
     '<td><%= @product.category_name %></td>' +
     '<td><%= @product.supplier_name %></td>' +
     '<td>' +
