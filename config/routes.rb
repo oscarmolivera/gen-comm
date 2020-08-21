@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :clients
     resources :suppliers
     resources :products
+    resources :sales
 
     get 'shared/tables', controller: :shared, action: :tables
 
