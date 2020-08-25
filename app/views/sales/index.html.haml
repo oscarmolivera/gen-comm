@@ -1,0 +1,26 @@
+= link_to new_sale_path, class:'btn btn-info', id:'create-sale-btn' do
+  %span
+    %i.fas.fa-plus-square
+  %span.ml-2  
+    = t('.new_sale_btn')
+%br/    
+%br/
+.card.shadow.mb-4
+  .card-body
+    .table-responsive
+      /#tableSales.table.table-border{style: 'width: 60%', cellspacing: '0'}
+      %table#tablaProducts.table.table-bordered{style: 'width: 100%', cellspacing: '0'}
+        %thead
+          %tr
+            %th= t('.id')
+            %th= t('.amount')
+            %th= t('.actions')
+        %tbody
+          - if @sales.empty?
+            %td= t('.no_sales')
+          - else
+            - @sales.each do |sale|
+              %tr
+                %td= sale.id
+                %td= sale.amount
+                %td= link_to 'X', sale, method: :delete, data: { confirm: t('.confirm_erase') }, class: 'btn btn-danger btn-xs'
