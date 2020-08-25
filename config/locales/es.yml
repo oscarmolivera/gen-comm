@@ -211,3 +211,11 @@ es:
         edit: Actualizar Producto
     modal:
       close: Cerrar      
+  sales:
+    index:
+      new_sale_btn: Registrar Venta
+      id: '#Id'
+      amount: Monto Total Venta
+      actions: Acciones
+      no_sales: No hay ventas resgistradas
+      confirm_erase: Desea eliminar venta?
