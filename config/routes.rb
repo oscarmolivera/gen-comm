@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :clients
     resources :suppliers
     resources :products
-    resources :sales
+    resources :sales, except: %i[show update]
 
     get 'shared/tables', controller: :shared, action: :tables
 
