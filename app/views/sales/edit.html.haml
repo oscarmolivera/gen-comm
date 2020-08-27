@@ -1,0 +1,44 @@
+= stylesheet_link_tag 'sales'
+.row
+  .col-md-6
+    %h2.mb-2.text-gray-800
+      = 'Punto de Venta'
+  .col-md-6{style: 'text-align: right;'}
+    %h2#amount-sale-lbl
+      = "Importe de Venta: #{@sale.amount}"
+  .col-md-5
+    %button.btn.btn-primary{ data: { toggle:'modal', target: 'search-product' } }
+    %button.btn.btn-success{ data: { toggle:'modal', target: 'search-client' } }
+  .col-md-7{style: 'text-align: right;'}
+    = link_to t('.approve_sale'), sales_path, class: 'btn btn-success'
+    = link_to t('.cancel_sale'), @sale, method: :delete, data: { confirm: '.cancel_sale_confirm'}, class: 'btn btn-danger'
+  #client_sale.name-client.col-md-3  
+    = t('.client-title')
+  %br
+  .card.shadow.mb-4
+    .card-body
+      .table-responsive
+        .table.table-bordered#tableSales{width: '80%', cellspacing: '0'}
+          %thead
+            %tr
+              %th= t('.product')
+              %th= t('.unit_price')
+              %th= t('.quantity')
+              %th= t('.amount')
+          %tbody
+            - if @products_sale.empty? 
+              %tr
+                %td= t('.no_products_sale')
+                %td=
+                %td=
+            - else
+              - @products_sale.each do |pro_sal|
+                %tr
+                  %td= pro_sal.product.try(:product_name)
+                  %td= pro_sal.product.try(:price)
+                  %td= pro_sal.quantity
+                  %td= "$ #{pro_sal.try(:price) * pro_sal.quantity}"
+- @model = @sale
+- @type = 'sales'
+= render 'product_search', model: @model, type: 'sales'
+= render 'client_search'
