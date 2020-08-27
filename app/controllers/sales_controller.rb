@@ -1,4 +1,5 @@
 class SalesController < ApplicationController
+  before_action :set_sale, only: %i[edit]
   def index
     @sales = Sale.all
   end
@@ -10,5 +11,11 @@ class SalesController < ApplicationController
 
   def edit
     @products_sale = @sale.sale_details
+  end
+
+  private
+
+  def set_sale
+    @sale = Sale.find(params[:id])
   end
 end
