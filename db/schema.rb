@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_204758) do
   create_table "sales", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.decimal "amount", precision: 10
     t.bigint "user_id", null: false
-    t.bigint "client_id", null: false
+    t.bigint "client_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["client_id"], name: "index_sales_on_client_id"
