@@ -1,4 +1,4 @@
-= stylesheet_link_tag 'sales'
+= stylesheet_pack_tag 'sales'
 .row
   .col-md-6
     %h2.mb-2.text-gray-800
@@ -29,8 +29,8 @@
             - if @products_sale.empty? 
               %tr
                 %td= t('.no_products_sale')
-                %td=
-                %td=
+                %td= ''
+                %td= ''
             - else
               - @products_sale.each do |pro_sal|
                 %tr
