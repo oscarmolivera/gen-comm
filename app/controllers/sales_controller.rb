@@ -5,8 +5,8 @@ class SalesController < ApplicationController
   end
 
   def new
-    @sale = Sale.create(amount: 0.0)
-    redirect_to edit_sale_path(@sale)
+    @sale = Sale.create(amount: 0.0, user_id: current_user.id)
+    redirect_to edit_sale_path(@sale.id)
   end
 
   def edit
