@@ -53,39 +53,40 @@ RSpec.describe SalesController, type: :controller do
 
     context 'when user IS logged in' do
       let(:user) { create(:user) }
-      let(:sale) { create(:sale, amount: 0) }
+      let(:sale) { create(:sale, amount: 0.0) }
 
       before do
         sign_in(user)
         get :new
       end
 
+      it 'redirects to edit' do
+        p response
+        expect(response).to redirect_to("/es/sales/#{Sale.last.id}/edit") 
+      end
+
       it 'assigns @sale with amount = 0' do
         expect(assigns(:sale).amount).to eq(sale.amount) 
       end
   
-      it 'redirects to edit' do
-        expect(response).to render_template(:edit)
-      end
-  
-      xit do
-        expect(response).to have_http_status(200)
+      it do
+        expect(response).to have_http_status(302)
       end
     end
 
     context 'when NO user is logged in' do 
       before { get :new, xhr: true }
       
-      xit 'does not assign @category' do
+      it 'does not assign @category' do
         expect(assigns(:sale)).to eq(nil)
       end
 
-      xit 'does not render the new template' do
+      it 'does not render the new template' do
         expect(response).not_to render_template(:new)
       end
 
-      xit do
-        expect(response).to have_http_status(401)
+      it do
+        expect(response).to have_http_status(401) 
       end
     end
   end
