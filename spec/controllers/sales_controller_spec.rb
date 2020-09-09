@@ -61,7 +61,6 @@ RSpec.describe SalesController, type: :controller do
       end
 
       it 'redirects to edit' do
-        p response
         expect(response).to redirect_to("/es/sales/#{Sale.last.id}/edit") 
       end
 
