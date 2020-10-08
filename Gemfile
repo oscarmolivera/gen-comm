@@ -74,6 +74,12 @@ group :development do
   gem 'bullet', '~> 6.1'
   # Patch-level verification for Bundled apps.
   gem 'bundler-audit', '~> 0.7.0.1'
+  
+  gem 'capistrano', '~> 3.7', '>= 3.7.1'
+  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-rbenv', '~> 2.1'
+ 
   # Guard and LiveReload automatically reloads your browser when 'view' files are modified.
   gem 'guard'
   gem 'guard-livereload', '~> 2.5', require: false
