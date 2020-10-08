@@ -62,6 +62,11 @@ group :development, :test do
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
 end
 
+group :staging, :development do
+  # A simple, fast Mysql library for Ruby, binding to libmysql.
+  gem 'mysql2', '~> 0.5.3'
+end
+
 group :production do
   # Ruby interface to the  PostgreSQL RDBMS
   gem 'pg', '~> 1.2', '>= 1.2.3'
@@ -74,8 +79,7 @@ group :development do
   gem 'bullet', '~> 6.1'
   # Patch-level verification for Bundled apps.
   gem 'bundler-audit', '~> 0.7.0.1'
-  
-  gem 'capistrano', '~> 3.7', '>= 3.7.1'
+    gem 'capistrano', '~> 3.7', '>= 3.7.1'
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rbenv', '~> 2.1'
@@ -87,8 +91,6 @@ group :development do
   gem 'guard-rspec', require: false
   # Listens to file modifications and notifies you about the changes.
   gem 'listen', '>= 3.0.5', '< 3.2'
-  # A simple, fast Mysql library for Ruby, binding to libmysql.
-  gem 'mysql2', '~> 0.5.3'
   # Automatic Ruby code style checking tool.
   gem 'rubocop', '~> 0.82.0', require: false
   gem 'rubocop-performance', require: false
