@@ -5,7 +5,7 @@ set :application, "gen_comm"
 set :repo_url, "git@github.com:oscarmolivera/gen-comm.git"
 set :deploy_to, '/home/deploy/webapps/gen_comm'
 
-append :linked_files, "config/database.yml", "config/secrets.yml"
+#append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads", "public/packs", "node_modules"
 
 # Default branch is :master
