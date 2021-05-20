@@ -31,7 +31,7 @@ gem 'nested_form', '~> 0.3.2'
 # Agnostic pagination in plain ruby
 gem 'pagy', '~> 3.8', '>= 3.8.2'
 # Use Puma as the app server.
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3'
 # Object oriented authorization for Rails applications
 gem 'pundit', '~> 2.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'.
