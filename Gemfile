@@ -26,6 +26,7 @@ gem 'haml-rails', '~> 2.0'
 ## gem 'image_processing', '~> 1.10', '>= 1.10.3'
 # Build JSON APIs with ease.
 gem 'jbuilder', '~> 2.7'
+gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
 # Handle multiple models in a single form.
 gem 'nested_form', '~> 0.3.2'
 # Agnostic pagination in plain ruby
